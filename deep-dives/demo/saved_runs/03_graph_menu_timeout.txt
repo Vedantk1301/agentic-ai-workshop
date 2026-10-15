@@ -1,0 +1,9 @@
+
+========================================
+LangGraph flow  (scenario: menu_timeout)
+========================================
+Question: Find vegetarian lunch under Rs 80, and tell me whether the canteen is still open.
+
+ROUTE:  read_request  ->  search_menu (failed, try 1)  ->  search_menu (failed, try 2)  ->  check_hours  ->  verify  ->  answer
+
+ANSWER: Sorry, I couldn't reach the menu right now (menu service timed out), so I can't recommend a dish. The canteen is open now (it's 12:30) and closes at 16:00.

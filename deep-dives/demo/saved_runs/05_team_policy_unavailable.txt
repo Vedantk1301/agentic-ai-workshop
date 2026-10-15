@@ -1,0 +1,16 @@
+
+===============================================
+A team of roles  (scenario: policy_unavailable)
+===============================================
+[COORDINATOR    ] Request: Find lunch under Rs 80, and explain whether a prepaid coupon can be refunded.
+[COORDINATOR    ] Splitting it: food -> Menu adviser, refund -> Policy adviser
+[MENU ADVISER   ] I only see menu data. Calling find_food(max_price=80)
+[MENU ADVISER   ] Found: [{'name': 'Veg sandwich', 'price': 60}, {'name': 'Chicken roll', 'price': 75}]
+[POLICY ADVISER ] I only see the policy. Calling get_refund_policy()
+[POLICY ADVISER ] Could not get the policy: refund-policy source unavailable
+[COORDINATOR    ] Combining both findings. I don't add facts neither adviser gave me.
+
+ANSWER: In stock options under Rs 80: Veg sandwich (Rs 60), Chicken roll (Rs 75). I couldn't reach the refund policy, so I won't guess whether your coupon can be refunded.
+
+-- 3 roles, 4 handoffs, 2 tool calls. One agent with both tools would need 0 handoffs.
+-- So why a team? Only for separate data, separate permissions, or truly independent work.

@@ -1,0 +1,27 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	read_request(read_request)
+	ask_for_budget(ask_for_budget)
+	search_menu(search_menu)
+	check_hours(check_hours)
+	verify(verify)
+	answer(answer)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> read_request;
+	check_hours --> verify;
+	read_request -.-> ask_for_budget;
+	read_request -.-> search_menu;
+	search_menu -.-> check_hours;
+	search_menu -.-> verify;
+	verify --> answer;
+	answer --> __end__;
+	ask_for_budget --> __end__;
+	search_menu -.-> search_menu;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

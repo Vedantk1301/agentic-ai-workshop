@@ -1,0 +1,9 @@
+
+==================================
+LangGraph flow  (scenario: normal)
+==================================
+Question: veg lunch, is it open?
+
+ROUTE:  read_request  ->  ask_for_budget
+
+ANSWER: What's your budget? Please give a positive whole number of rupees.

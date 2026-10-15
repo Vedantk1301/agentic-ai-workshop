@@ -1,0 +1,6 @@
+
+==============================================================================
+ReAct-style agent  (brain: offline stand-in (not a real AI), scenario: normal)
+==============================================================================
+
+STOPPED: hit the step limit of 2. A stuck agent stops; it doesn't loop forever.

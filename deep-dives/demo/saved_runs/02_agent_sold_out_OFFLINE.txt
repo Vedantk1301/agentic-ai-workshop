@@ -1,0 +1,13 @@
+
+================================================================================
+ReAct-style agent  (brain: offline stand-in (not a real AI), scenario: sold_out)
+================================================================================
+
+[YOU]          Find vegetarian lunch under Rs 80, and tell me whether the canteen is still open.
+[MODEL ASKS]   find_food(max_price=80, vegetarian=true)
+[TOOL RESULT]  {"status": "ok", "filters": {"max_price": 80, "vegetarian": true, "in_stock_only": true}, "matches": []}
+[MODEL ASKS]   get_canteen_hours()
+[TOOL RESULT]  {"status": "ok", "opens": "09:00", "closes": "16:00", "now": "12:30", "open_now": true}
+[ANSWER]       Nothing vegetarian under Rs 80 is in stock right now. Want me to check with a slightly higher budget? The canteen is open now (it's 12:30) and closes at 16:00.
+
+-- 3 model call(s), 2 tool call(s), 0.0s

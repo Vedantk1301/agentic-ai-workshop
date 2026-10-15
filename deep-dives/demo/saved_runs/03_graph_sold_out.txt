@@ -1,0 +1,9 @@
+
+====================================
+LangGraph flow  (scenario: sold_out)
+====================================
+Question: Find vegetarian lunch under Rs 80, and tell me whether the canteen is still open.
+
+ROUTE:  read_request  ->  search_menu  ->  check_hours  ->  verify  ->  answer
+
+ANSWER: Nothing vegetarian under Rs 80 is in stock right now. Want me to check with a slightly higher budget? The canteen is open now (it's 12:30) and closes at 16:00.

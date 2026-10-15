@@ -1,0 +1,11 @@
+--- starter/agent.py
++++ solutions/budget-30/agent.py
+@@ -23,7 +23,7 @@
+ from canteen import console, lc_tools, models
+ from canteen.trace import print_trace
+ 
+-QUESTION = "Find vegetarian lunch under Rs 80, and tell me whether the canteen is still open."
++QUESTION = "Find vegetarian lunch under Rs 30, and tell me whether the canteen is still open."
+ MENU_ONLY_QUESTION = "What vegetarian food can I get under Rs 80?"
+ 
+ SYSTEM_PROMPT = """You are the Campus Canteen Assistant.

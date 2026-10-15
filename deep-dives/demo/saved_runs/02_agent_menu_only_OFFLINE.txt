@@ -1,0 +1,11 @@
+
+==============================================================================
+ReAct-style agent  (brain: offline stand-in (not a real AI), scenario: normal)
+==============================================================================
+
+[YOU]          What vegetarian food can I get under Rs 80?
+[MODEL ASKS]   find_food(max_price=80, vegetarian=true)
+[TOOL RESULT]  {"status": "ok", "filters": {"max_price": 80, "vegetarian": true, "in_stock_only": true}, "matches": [{"name": "Veg sandwich", "price": 60}]}
+[ANSWER]       In stock vegetarian options under Rs 80: Veg sandwich (Rs 60).
+
+-- 2 model call(s), 1 tool call(s), 0.0s

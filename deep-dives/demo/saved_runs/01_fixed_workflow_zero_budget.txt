@@ -1,0 +1,29 @@
+
+==============================================
+PART A: the menu tool, called directly (no AI)
+==============================================
+find_food(max_price=80, vegetarian=True) returns:
+{
+  "status": "ok",
+  "filters": {
+    "max_price": 80,
+    "vegetarian": true,
+    "in_stock_only": true
+  },
+  "matches": [
+    {
+      "name": "Veg sandwich",
+      "price": 60
+    }
+  ]
+}
+
+==========================================
+PART B: fixed workflow  (scenario: normal)
+==========================================
+Question: veg lunch under Rs 0
+
+  1. read request      -> {'budget': 0, 'vegetarian': True, 'wants_hours': False, 'wants_refund': False}
+  2. validate          -> missing or invalid budget, so ask instead of guessing
+
+ANSWER: What's your budget? Please give a positive whole number of rupees.

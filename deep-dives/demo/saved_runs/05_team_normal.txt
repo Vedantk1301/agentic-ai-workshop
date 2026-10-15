@@ -1,0 +1,16 @@
+
+===================================
+A team of roles  (scenario: normal)
+===================================
+[COORDINATOR    ] Request: Find lunch under Rs 80, and explain whether a prepaid coupon can be refunded.
+[COORDINATOR    ] Splitting it: food -> Menu adviser, refund -> Policy adviser
+[MENU ADVISER   ] I only see menu data. Calling find_food(max_price=80)
+[MENU ADVISER   ] Found: [{'name': 'Veg sandwich', 'price': 60}, {'name': 'Chicken roll', 'price': 75}]
+[POLICY ADVISER ] I only see the policy. Calling get_refund_policy()
+[POLICY ADVISER ] Policy: Prepaid canteen coupons can be refunded at the counter within 7 days of purchase with your student ID. Used coupons cannot be refunded.
+[COORDINATOR    ] Combining both findings. I don't add facts neither adviser gave me.
+
+ANSWER: In stock options under Rs 80: Veg sandwich (Rs 60), Chicken roll (Rs 75). Refund policy: Prepaid canteen coupons can be refunded at the counter within 7 days of purchase with your student ID. Used coupons cannot be refunded.
+
+-- 3 roles, 4 handoffs, 2 tool calls. One agent with both tools would need 0 handoffs.
+-- So why a team? Only for separate data, separate permissions, or truly independent work.

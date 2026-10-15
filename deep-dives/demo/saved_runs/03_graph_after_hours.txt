@@ -1,0 +1,9 @@
+
+=======================================
+LangGraph flow  (scenario: after_hours)
+=======================================
+Question: Find vegetarian lunch under Rs 80, and tell me whether the canteen is still open.
+
+ROUTE:  read_request  ->  search_menu  ->  check_hours  ->  verify  ->  answer
+
+ANSWER: In stock vegetarian options under Rs 80: Veg sandwich (Rs 60). The canteen is closed right now (it's 16:30). It opens at 09:00.
