@@ -6,6 +6,10 @@ Install Python 3.11 and one editor. Clone or download/extract the repository. Us
 
 Run starter/agent.py with --offline once before class. Offline examples need no account or key after dependencies are installed. The core exercises can also use a paired laptop or printed trace.
 
+For the large-room session, bring your own laptop where available; sharing is optional. Complete dependency installation before arriving. The live student activities use `--offline`, so an AI Studio key and a coding-assistant login are not prerequisites. The instructor demonstrates API setup from the front; personal live setup can be completed privately before or after class.
+
+If installation is blocked, open [the saved trace](../deep-dives/demo/saved_runs/02_agent_lunch_and_hours_OFFLINE.txt) and continue [the starter lesson](../starter/README.md). Record predicted results as **not run**. Ask volunteers, if available, for individual setup help; the main session continues at common checkpoints.
+
 ## Optional Gemini API setup
 
 1. Sign into [Google AI Studio](https://aistudio.google.com/) with an eligible account. AI Studio access is 18+. Continue offline if access is unavailable.

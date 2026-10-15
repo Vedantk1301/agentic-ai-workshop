@@ -1,6 +1,6 @@
 # Review the answer reaching the user
 
-Work in pairs. Requirement: recommend only available vegetarian food within the student's confirmed Rs 80 budget, using successful menu evidence.
+Write your own review finding first, then compare with a neighbour if useful. No laptop or AI account is required. Requirement: recommend only available vegetarian food within the student's confirmed Rs 80 budget, using successful menu evidence.
 
 Inspect this deliberately unsafe sketch:
 

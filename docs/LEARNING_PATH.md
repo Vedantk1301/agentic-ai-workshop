@@ -4,6 +4,8 @@
 
 Complete starter/README.md. Show one useful instruction, one budget change plus its output, and one review finding. You need to understand model/tool/code responsibilities before adding more framework vocabulary.
 
+Work individually where devices permit, with optional sharing. The five checkpoints in the starter are the live path. Keep your own notes and distinguish observed outputs from predictions if using the setup fallback. The instructor samples explanations from the room; individual laptop approval is not required to proceed.
+
 ## Afterward: explain the finished change
 
 Compare solutions/ with your work. Explain the one changed default budget and why stock/hours are unchanged. Read the worked review answer and run the checked graph with a deliberately invented message.

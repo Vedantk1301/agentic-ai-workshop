@@ -24,3 +24,5 @@ Use .venv/bin/python on macOS/Linux. Demos 01/03/05 need no model; 02/04 support
 Continue with [the guided lab](learning_lab/AI%20Coding%20Lab.md), [exercises and solutions](demo/exercises/README.md), [study guide](guides/Agentic%20AI%20Study%20Guide.md), [practice and answers](guides/Practice%20and%20Answer%20Key.md) or [full reference slides](Full%20Reference%20Deck.pdf).
 
 The preserved lab uses paths relative to this older demo/ layout. When following it literally, enter deep-dives/demo; the shared root interpreter is ../../.venv/Scripts/python on Windows or ../../.venv/bin/python on macOS/Linux. Alternatively use the root commands above. Its old timetable/reference slides are superseded by the current 31-slide classroom deck.
+
+The preserved Classroom Follow Along and review PDF describe an older lesson layout. Use starter/README.md for the current individual-work lesson, five room checkpoints and optional sharing. Instructor guidance is in [ROOM_GUIDE](../docs/ROOM_GUIDE.md).

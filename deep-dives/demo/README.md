@@ -1,6 +1,6 @@
 # Campus Canteen Assistant
 
-Five small demos use one fictional menu. The trimmed live class uses the [Classroom Follow Along](../learning_lab/Classroom%20Follow%20Along.md): one instruction file, one small change and one review task. Set up before class for laptop participation; paired/paper participation remains available. The other implementations support optional deeper practice.
+Five small demos use one fictional menu. The current live class uses the [starter lesson](../../starter/README.md): one instruction file, one small change and one review task. The Classroom Follow Along in learning_lab preserves an older standalone folder layout for reference. Set up before class for laptop participation; paired/paper participation remains available. The other implementations support optional deeper practice.
 
 | File | Purpose | Needs network/API? |
 | --- | --- | --- |

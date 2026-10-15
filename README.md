@@ -4,6 +4,14 @@ Build, review and control a small Campus Canteen Assistant. Prepared for Vedant'
 
 **Start with [the starter lesson](starter/README.md).** You will write useful project instructions, change one request, and review an unsafe answer. The advanced folders are optional after class.
 
+## How the room will work
+
+The session is planned for a possible 100-200 students. Work on your own laptop where available; sharing is optional. Everyone writes their own notes and explains their result. The instructor demonstrates one step, gives you time to do it, then checks progress from the front.
+
+Complete installation before class. The live student exercises use `--offline`; the instructor may separately demonstrate a tested live model. At each checkpoint show **1 finger: ready, 2: need help, 3: using a saved trace**. Helpers, if available, handle individual setup issues. If blocked, continue with the supplied menu, source and saved trace, recording predictions as unexecuted rather than claiming a successful run.
+
+Instructors and volunteers: read [the room guide](docs/ROOM_GUIDE.md). Students: follow only the starter during the live session.
+
 ## Get the project
 
 Clone this repository, or use GitHub's **Code > Download ZIP**, extract it and open the extracted folder. Git knowledge is optional. While the repository is private, access is limited to authorised GitHub accounts.
