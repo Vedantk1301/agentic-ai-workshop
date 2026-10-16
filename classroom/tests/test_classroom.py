@@ -141,3 +141,26 @@ def test_live_crew_client_has_a_bounded_transport_without_making_a_request():
         assert options.retry_options.attempts == 1
     finally:
         brain.client.close()
+
+
+@pytest.mark.parametrize('ending_role', ['assistant', 'user'])
+def test_live_crew_can_continue_after_a_tool_observation(ending_role):
+    """Gemini rejects assistant-prefill requests after CrewAI's tool step."""
+    from copy import deepcopy
+    brain = importlib.import_module('crew').make_live_brain('test-not-a-real-key', 'gemini-3.5-flash-lite')
+    messages = [
+        {'role': 'system', 'content': 'Use the fictional menu.'},
+        {'role': 'user', 'content': 'Find vegetarian lunch under Rs 75.'},
+        {'role': ending_role, 'content': 'Observation: {"matches": [{"name": "Veg sandwich", "price": 60}]}'},
+    ]
+    original = deepcopy(messages)
+    try:
+        contents, instruction = brain._format_messages_for_gemini(messages)
+        assert contents[-1].role == 'user'
+        assert 'Veg sandwich' in '\n'.join(part.text or '' for item in contents for part in item.parts)
+        assert instruction == 'Use the fictional menu.'
+        assert messages == original
+        if ending_role == 'user':
+            assert len(contents) == 2  # No extra continuation on an ordinary request.
+    finally:
+        brain.client.close()

@@ -20,16 +20,10 @@ os.environ.setdefault('CREWAI_STORAGE_DIR', str(Path(__file__).with_name('.crewa
 if sys.platform == 'win32':
     os.environ['LOCALAPPDATA'] = str(Path(__file__).with_name('.crewai').resolve())
 
-from crewai import Agent, Crew, LLM, Process, Task
+from crewai import Agent, Crew, Process, Task
 from crewai.mcp import MCPServerStdio
+from crew_live import make_live_brain
 from workshop_runtime import banner, configuration
-
-
-def make_live_brain(key, model):
-    from google.genai.types import HttpOptions, HttpRetryOptions
-    return LLM(model='gemini/' + model, api_key=key,
-               client_params={'http_options': HttpOptions(
-                   timeout=30000, retry_options=HttpRetryOptions(attempts=1))})
 
 
 def run(offline=False):
