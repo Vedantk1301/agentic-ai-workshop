@@ -1,6 +1,6 @@
 # Build your first AI agent
 
-A guided VIT Mumbai workshop for beginners, 17 October 2026, 11:00-13:00 IST. Build a small canteen agent, add a tool, reuse the tools through MCP, then compare LangChain, LangGraph and CrewAI.
+A guided VIT Mumbai workshop for beginners, 17 October 2026, 13:30-15:00 IST, Lab 05. Build a small canteen agent, add a tool, reuse the tools through MCP, then compare LangChain, LangGraph and CrewAI.
 
 **Start with classroom/README.md.** Students write their application in a fresh folder; completed classroom files are checkpoints and instructor examples. The older starter/ and deep-dives/ material is optional advanced reference.
 

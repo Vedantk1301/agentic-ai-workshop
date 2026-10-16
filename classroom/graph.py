@@ -10,6 +10,7 @@ from mcp_connection import connected_tools
 from workshop_runtime import banner, make_model, payload
 
 
+# STATE: the information carried from step to step through the graph.
 class State(TypedDict, total=False):
     question: str
     hours: dict
@@ -24,10 +25,12 @@ async def run(offline=False, at='12:30'):
         lunch_agent = create_agent(make_model(offline), [by_name['find_food']],
                                   system_prompt='Find food using the tool. Respect budget and diet.')
 
+        # NODES: each function below is one step. Each returns the state fields it updates.
         async def hours(state):
             result = await by_name['get_canteen_hours'].ainvoke({'at': at})
             return {'hours': payload(result), 'path': ['hours']}
 
+        # The route is decided by plain code, not by the model: "open or closed" is a rule.
         def choose(state):
             return 'agent' if state['hours']['open_now'] else 'closed'
 
@@ -40,6 +43,7 @@ async def run(offline=False, at='12:30'):
             return {'answer': f"Canteen closed at mock time {state['hours']['now']}. No menu lookup needed.",
                     'path': state['path'] + ['closed']}
 
+        # EDGES: wire the steps together. START -> hours -> (agent or closed) -> END.
         flow = StateGraph(State)
         flow.add_node('hours', hours)
         flow.add_node('agent', agent)

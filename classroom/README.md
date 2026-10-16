@@ -24,6 +24,19 @@ PY="$(pwd)/.venv/bin/python"
 cd your_agent
 ```
 
+### What each file in your_agent/ does
+
+| File | Who writes it | Job |
+| --- | --- | --- |
+| data/menu.json | provided | The four fictional menu records. Facts live here, not in the model. |
+| workshop_runtime.py | provided | Builds the model (scripted or live Gemini) and prints each step of a run. |
+| offline_brain.py | provided | The scripted stand-in used when OFFLINE=True. Not real AI. |
+| mcp_connection.py | provided | Starts your mcp_server.py and connects to it (Step 4). |
+| menu_tools.py | you, Step 1 | Your tools: plain Python functions. |
+| my_agent.py | you, Step 2 | Your agent: model + tools + instructions + loop. |
+
+When the slides say `python my_agent.py`, use your workshop Python: `& $py my_agent.py` on Windows or `"$PY" my_agent.py` on macOS/Linux.
+
 If your learner folder was already created, skip tools/start_here.py and continue at Step 1; the script refuses to overwrite existing work. The new folder contains data/menu.json, configuration support, a local MCP connection helper and a labelled scripted model for rehearsal. It contains no completed menu function or agent. Checkpoints in classroom/ are recovery options, not files you must copy before trying.
 
 ## 1. Run a normal function
@@ -67,6 +80,8 @@ Run it:
 
 On macOS/Linux use "$PY" menu_tools.py. Expect status ok and Veg sandwich at Rs 60. Try 30: the tool successfully returns an empty list. Remove the temporary print before importing this module from your agent. We have written ordinary Python; no model is involved yet.
 
+**Try this (one minute each):** change the print to `find_food(80, vegetarian=False)` and the Chicken roll appears. Try `find_food(-5)` and the input check refuses it with a clear error. Open data/menu.json, set Poha to `"available": true`, run `find_food(40)`, then change it back.
+
 ## 2. Create the first agent in a new file
 
 Create my_agent.py. Add the imports and OFFLINE setting first, then create_agent, then the invocation. Run after the complete block is in place.
@@ -99,6 +114,17 @@ Expect a request to find_food, its actual returned result, and an answer mention
 
 Point to the tool name and arguments. The model requests a call; the application executes the function and sends the result back. The model can request another action or finish. LangChain manages that loop and its messages. The optional manual_loop.py shows the same plumbing explicitly after class.
 
+How to read the output:
+
+| Line | Meaning |
+| --- | --- |
+| `YOU:` | Your question, sent to the model. |
+| `MODEL REQUEST:` | The model asks for a tool by name, with arguments. It does not run anything. |
+| `RESULT find_food:` | Your Python ran the function and this is the real data it returned. |
+| `ANSWER:` | The model's final reply, written from those results. |
+
+**Try this:** ask "Find non-vegetarian lunch under Rs 80." and check the arguments in MODEL REQUEST. With a live model, also try deleting the docstring from find_food and asking again: without a description, the model has a harder time knowing when to use the tool.
+
 ## 3. Add a new ability
 
 Add this function to menu_tools.py:
@@ -127,6 +153,8 @@ tools=[tool(find_food), tool(get_canteen_hours)],
 
 The snippet above shows replacements in different locations, not a second complete program. Run my_agent.py again. Expect actual food and hours results; default mock time is 12:30 and closing time 16:00. A live model can choose a different call order. Explain what the second tool added.
 
+**Try this:** change the budget to Rs 30. The correct answer is "nothing available"; check that it doesn't invent a dish. With a live model, ask only "Is the canteen open?" and see which tool it chooses. (The OFFLINE scripted brain always checks the menu first, so this one needs live mode.)
+
 ## 4. Expose the same functions through MCP
 
 Create mcp_server.py in your_agent:
@@ -151,17 +179,19 @@ Create a small probe.py first:
 ```python
 import asyncio
 from mcp_connection import connected_tools
+from workshop_runtime import payload
 
 async def main():
-    async with connected_tools() as tools:
-        print([t.name for t in tools])
+    async with connected_tools() as tools:          # starts mcp_server.py for you
+        print([t.name for t in tools])               # the tools the server offers
         food = next(t for t in tools if t.name == "find_food")
-        print(await food.ainvoke({"max_price": 80, "vegetarian": True}))
+        result = await food.ainvoke({"max_price": 80, "vegetarian": True})
+        print(payload(result))                       # MCP replies as text; payload() turns it into a dict
 
 asyncio.run(main())
 ```
 
-Run & $py probe.py. This is a real MCP call and needs no model key. Expect two tool names and the sandwich record. The server is a local child process; no separate server terminal or deployment is needed.
+Run & $py probe.py. This is a real MCP call and needs no model key. Expect two tool names and the sandwich record. Lines starting with INFO are the server's own log messages; you can ignore them. The server is a local child process; no separate server terminal or deployment is needed.
 
 To see the agent using MCP, open the short checkpoint classroom/mcp_agent.py. It discovers tools, passes them into create_agent and uses ainvoke inside the connection lifetime. You can copy it into your_agent as mcp_agent.py and run it with --offline, or continue using the direct-function agent if time is short.
 
