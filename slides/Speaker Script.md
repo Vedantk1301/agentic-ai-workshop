@@ -227,11 +227,11 @@ This is where your own tips go: what you’d tell your first-year self, what act
 
 **14:53 · 7 min · Slides**
 
-Leave this slide up the whole time. Likely questions. “Which framework first?” LangChain and LangGraph for breadth; the ideas transfer. “Do I need a GPU?” No, you call models over an API. “Will agents take developer jobs?” Answer as your view, not a fact: they take over a lot of typing, and in my experience they increase the need for people who can design and check systems. “Is it free?” Gemini has a limited free tier and quotas change. The code is public on GitHub; point at the link and remind them classroom/README.md is the step-by-step guide to redo today’s build at home. Close on time at 15:00 and thank Prof. Tekwani, Prof. Agarwal and the student coordinators.
+Leave this slide up the whole time. Likely questions. “Which framework first?” LangChain and LangGraph for breadth; the ideas transfer. “Do I need a GPU?” No, you call models over an API. “Will agents take developer jobs?” Answer as your view, not a fact: they take over a lot of typing, and in my experience they increase the need for people who can design and check systems. “Is it free?” Gemini has a limited free tier and quotas change. The code is public on GitHub; point at the link and remind them classroom/README.md is the step-by-step guide to redo today’s build at home. Close on time at 15:00 and thank everyone.
 
 ## 38. Thank you.
 
 **15:00 · 0 min · Slides**
 
-Final slide; leave it up as people leave. Thank the faculty coordinators by name, the student coordinators and the room. One closing line of your own, then stop on time at 15:00. Remind them the code and the full step-by-step README are on GitHub, and the take-home prompting guide is in docs/.
+Final slide; leave it up as people leave. Thank everyone in the room. One closing line of your own, then stop on time at 15:00. Remind them the code and the full step-by-step README are on GitHub, and the take-home prompting guide is in docs/.
 
