@@ -14,5 +14,6 @@ Thumbs.db
 .vscode/
 node_modules/
 your_agent/
+demo_agent/
 .crewai/
 .superpowers/
