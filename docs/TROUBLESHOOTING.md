@@ -8,7 +8,7 @@
 | PowerShell activation blocked | Use .venv/Scripts/python directly; the workshop needs no execution-policy change. |
 | API key missing | Use --offline on reference demos or OFFLINE=True in your typed build. Configure classroom/.env for references or your_agent/.env for the learner build; see SETUP.md. Never print keys. |
 | Model unavailable / quota exhausted | Inspect account/model availability privately. Continue with --offline. Do not assume creating another key adds quota. |
-| GitHub repository not found | A private repository requires authorised access. Use the supplied Agentic AI GitHub Kit.zip from the coordinator, or download/clone after access is provided. |
+| GitHub repository not found or git missing | Check the URL: https://github.com/Vedantk1301/agentic-ai-workshop. Without Git, use Code → Download ZIP on that page, or the Agentic AI GitHub Kit.zip from the coordinator. |
 | Test fails after a change | Read the assertion and actual output. Review your diff. Keep menu data fixed unless the requirement changes it. |
 | start_here refuses to overwrite | The learner folder is already prepared. Continue at Step 1 in classroom/README.md, or choose a new empty destination. Do not delete your work to rerun setup. |
 | Missing crewai | Only the instructor needs requirements-instructor.txt. Continue the core agent/MCP lesson; run tests with -k "not crew" if CrewAI is not installed. |

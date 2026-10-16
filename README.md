@@ -6,7 +6,13 @@ A guided VIT Mumbai workshop for beginners, 17 October 2026, 13:30-15:00 IST, La
 
 ## Install before class
 
-Install Python 3.11 and one editor. An AI coding editor is optional. Clone this repository or extract the supplied ZIP. While private, a GitHub link requires authorised access; the organiser can distribute the ZIP directly.
+Install Python 3.11 and one editor. An AI coding editor is optional. Get the code one of three ways:
+
+- `git clone https://github.com/Vedantk1301/agentic-ai-workshop.git`
+- On GitHub, choose **Code → Download ZIP** and extract it (no GitHub account or Git needed).
+- Use the same ZIP shared by the organisers.
+
+Do the install below **before class** if you can: it downloads the Python packages, which is slow when the whole lab does it at once.
 
 Windows PowerShell, repository root:
 

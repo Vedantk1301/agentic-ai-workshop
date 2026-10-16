@@ -10,7 +10,7 @@ Please bring a laptop and charger where possible, with Python 3.11 and one edito
 
 Live model access needs eligible personal access, a private key and available quota; follow docs/SETUP.md if using it. Local functions and MCP calls need no model key. Labelled scripted rehearsal and checkpoints are provided for account/network problems. Never share keys. The coding editor account and application API access are separate.
 
-Keep the repository private until Vedant explicitly changes that decision. Distribute the tested ZIP through the chosen college channel; a private URL alone does not grant access.
+The repository is public: https://github.com/Vedantk1301/agentic-ai-workshop. Students can clone it or use Code → Download ZIP without an account. Also share the tested ZIP through the college channel for anyone who can't reach GitHub. Ask students to install the requirements before the session, because the package download is slow when the whole lab does it at once.
 
 ## Room plan
 
