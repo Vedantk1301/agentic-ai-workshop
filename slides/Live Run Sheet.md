@@ -1,75 +1,49 @@
 # Live run sheet
 
-Switch between PowerPoint Presenter View and VS Code/terminal. The PPTX notes contain what to say, ask and demonstrate. The printed sheet below is a backup.
+**Event:** Hands-on Workshop on Agentic AI, Dept. of IT, VIT Mumbai
+**When:** Saturday 17 October 2026, 13:30-15:00 IST (90 minutes), Lab 05
+**Speaker:** Vedant Kakade
+**Deck (source of truth):** https://claude.ai/artifact/9gCUF7bUg4wzA6gjYpGTaN
 
-## Prepare the terminal
+Generated from the deck's speaker notes. If the deck changes, regenerate this file instead of editing it by hand.
 
-From the repository root on Vedant's machine:
+| # | Time | Min | Screen | Slide | Commands |
+| ---: | --- | ---: | --- | --- | --- |
+| 1 | 13:30 | 1 | Slides | Build your first AI agent. |  |
+| 2 | 13:31 | 1 | Slides | Vedant Kakade |  |
+| 3 | 13:32 | 2 | Slides | You have ₹80 and ten minutes before your next lecture. |  |
+| 4 | 13:34 | 2 | Slides | A model answers. An agent gets it done. |  |
+| 5 | 13:36 | 2 | Slides | Every agent has four parts. |  |
+| 6 | 13:38 | 2 | Slides | Think, act, observe. Repeat. |  |
+| 7 | 13:40 | 2 | Slides | Agents went to work. |  |
+| 8 | 13:42 | 3 | Slides | Three choices behind every AI system. |  |
+| 9 | 13:45 | 2 | Slides | An AI stylist for Indian fashion. |  |
+| 10 | 13:47 | 1 | Slides | What sits behind the chat box. |  |
+| 11 | 13:48 | 2 | Slides | Recipes with receipts. |  |
+| 12 | 13:50 | 1 | Slides | Ainaa gets flexibility. Kranti gets control. |  |
+| 13 | 13:51 | 1 | Editor (your_agent) | Let’s build one. Together. | `python tools/start_here.py` |
+| 14 | 13:52 | 2 | Slides | Who does what? |  |
+| 15 | 13:54 | 1 | Slides | Our whole canteen, in four rows. |  |
+| 16 | 13:55 | 5 | Editor (your_agent) | A tool is just a function. | `python menu_tools.py` |
+| 17 | 14:00 | 2 | Editor (your_agent) | Bring in the pieces. |  |
+| 18 | 14:02 | 4 | Editor (your_agent) | Hand the function to a model. | `python my_agent.py` |
+| 19 | 14:06 | 2 | Slides | What actually happened. |  |
+| 20 | 14:08 | 8 | Slides | Give it a second ability. | `python my_agent.py` |
+| 21 | 14:16 | 3 | Terminal (repo root) | Three minutes. | `python classroom/mcp_probe.py` |
+| 22 | 14:19 | 2 | Slides | Write the tool once. Plug it in anywhere. |  |
+| 23 | 14:21 | 2 | Terminal (repo root) | Same tools, now over MCP. | `python classroom/mcp_agent.py --offline`<br>`python classroom/mcp_probe.py` |
+| 24 | 14:23 | 1 | Slides | When to use what. |  |
+| 25 | 14:24 | 3 | Slides | Give the model only the control it needs. |  |
+| 26 | 14:27 | 2 | Slides | Every pattern has a weakness. |  |
+| 27 | 14:29 | 3 | Terminal (repo root) | What if the canteen is closed? | `python classroom/graph.py --offline` |
+| 28 | 14:32 | 3 | Slides | A scout hands off to a planner. | `python classroom/crew.py --offline` |
+| 29 | 14:35 | 4 | Slides | Pick one. Choose the design. Name one way it fails. |  |
+| 30 | 14:39 | 2 | Slides | The reason matters more than the label. |  |
+| 31 | 14:41 | 2 | Slides | What agents still get wrong. |  |
+| 32 | 14:43 | 2 | Terminal (repo root) | Prompts guide. Code enforces. | `python classroom/safety_demo.py` |
+| 33 | 14:45 | 2 | Slides | Agents that learn on the job. |  |
+| 34 | 14:47 | 2 | Slides | Where this is heading. |  |
+| 35 | 14:49 | 1 | Slides | What to do after today. |  |
+| 36 | 14:50 | 10 | Slides | Your agent is 30 lines long. What will you give it next? |  |
 
-```powershell
-$py = 'C:\vedant-side\workshop\.venv-build-first\Scripts\python.exe'
-& $py classroom/check_setup.py
-& $py classroom/mcp_probe.py
-```
-
-For a student installation set $py to the absolute .venv/Scripts/python.exe in the extracted repository. Keep it absolute before changing to your_agent. Never project .env. Test real Gemini privately with classroom/check_setup.py --live before selecting live mode.
-
-The new learner folder is created by tools/start_here.py. Build there; keep classroom reference files available for recovery. All --offline commands use scripted brains with real tools/frameworks. A saved text output is a backup, not a screen recording or a live model run.
-
-## Slide and editor switches
-
-| Slide | Time IST | Screen | Action |
-| --- | --- | --- | --- |
-| 1 | 11:00-11:01 | SLIDES | Have the new learner folder ready, with no menu_tools.py or my_agent.py. Open only the lesson and clean terminal; close private .env tabs. |
-| 2 | 11:01-11:03 | SLIDES | Show a rehearsed short real run if available. Otherwise state clearly that the scripted preview is a rehearsal and the actual tool data is local. |
-| 3 | 11:03-11:05 | SLIDES | Does the model magically know our current menu? |
-| 4 | 11:05-11:08 | SLIDES | Use the menu on the next slide or the data file; no printed props are required. |
-| 5 | 11:08-11:10 | SLIDES | Can the model request a function our app has not allowed? |
-| 6 | 11:10-11:13 | SLIDES | Switch briefly to classroom/data/menu.json and point out the four fields. Return to the slide before typing. |
-| 7 | 11:13-11:17 | EDITOR | In your new learner folder create menu_tools.py. Add imports/data loading, then find_food from classroom/README.md. Use the readable for loop. Run: & $py menu_tools.py |
-| 8 | 11:17-11:20 | STUDENT ACTIVITY | Expect sandwich at 80 and an empty matches list at 30. Remove the temporary top-level print before importing the module. |
-| 9 | 11:20-11:23 | SLIDES | Point to the name find_food and max_price=80 in a saved or rehearsed live trace. |
-| 10 | 11:23-11:26 | SLIDES | Explain the five-line conceptual loop in the preparation guide. LangChain manages message bookkeeping in the student build. |
-| 11 | 11:26-11:30 | EDITOR | Use the full 18-line first-agent checkpoint from classroom/README.md. Add imports, then agent creation, then invocation and show_messages. Run: & $py my_agent.py |
-| 12 | 11:30-11:40 | STUDENT ACTIVITY | Use & $py my_agent.py in the learner folder. Have students point to MODEL REQUEST and RESULT. Explain the mode label. For live calls, observe actual behavior rather than expecting an exact sentence. |
-| 13 | 11:40-11:45 | EDITOR + DISCUSSION | Try Rs 30. Distinguish an empty successful result from an error, without opening the advanced error-handling lab. |
-| 14 | 11:45-11:48 | EDITOR | Add hours to menu_tools.py, update the import and tools list in my_agent.py. Show only these changes. |
-| 15 | 11:48-11:55 | STUDENT ACTIVITY | Run my_agent.py again. Expect sandwich and mock closing 16:00. Take two short student explanations from different seating zones. |
-| 16 | 11:55-12:00 | BREAK | Resume at 12:00. Bring up the MCP question, not installation steps. |
-| 17 | 12:00-12:02 | SLIDES | What would be wasteful about rewriting the menu filter for every framework? |
-| 18 | 12:02-12:05 | SLIDES | Point to menu_tools.py being imported by mcp_server.py. |
-| 19 | 12:05-12:08 | EDITOR | Create the file in the learner folder. The supplied connection helper launches it through the current Python interpreter; no separate server window is needed. |
-| 20 | 12:08-12:11 | EDITOR | From repository root: & $py classroom/mcp_probe.py, then & $py classroom/mcp_agent.py --offline. Remove --offline only for a privately rehearsed live run. |
-| 21 | 12:11-12:15 | STUDENT ACTIVITY | Run probe.py in the learner folder, or use classroom/mcp_probe.py from repository root. See the two tool names and sandwich result. |
-| 22 | 12:15-12:17 | SLIDES | Would a menu lookup help when the canteen is closed? |
-| 23 | 12:17-12:20 | SLIDES | Where does the model choose its own actions here? |
-| 24 | 12:20-12:23 | EDITOR | Open classroom/graph.py. Point to hours using MCP and agent containing create_agent. Explain choose without adding persistence or approval APIs. |
-| 25 | 12:23-12:27 | EDITOR + DISCUSSION | Use & $py rather than python if using the prepared PowerShell interpreter variable. |
-| 26 | 12:27-12:29 | SLIDES | Could one agent already do this? |
-| 27 | 12:29-12:32 | EDITOR | Open classroom/crew.py. The presenter has already installed requirements-instructor.txt. Keep adapter compatibility details out of the beginner explanation. |
-| 28 | 12:32-12:35 | EDITOR | Run & $py classroom/crew.py --offline. Point to SCOUT HANDOFF then PLANNER. |
-| 29 | 12:35-12:37 | SLIDES | What would two lunch agents add besides latency? |
-| 30 | 12:37-12:40 | SLIDES | Which is the simplest design that meets each requirement? |
-| 31 | 12:40-12:42 | SLIDES | Skip this teaser if behind; do not introduce protocol messages or another server. |
-| 32 | 12:42-12:44 | SLIDES | Where should a price change live? Where should a run command live? |
-| 33 | 12:44-12:46 | STUDENT ACTIVITY | Use a plain Markdown file or paper if the coding client is unavailable. This is a two-minute introduction; the longer documentation lab is after class. |
-| 34 | 12:46-12:49 | EDITOR | Open classroom/manual_loop.py and show the allowed lookup and step limit. Run classroom/safety_demo.py for a deliberately injected forbidden request. Label it as injected. |
-| 35 | 12:49-12:50 | SLIDES | One minute. An AI coding editor is optional. The skill is making a small understandable change and observing its behavior, not accepting a whole generated project. Keep the long fake-wrap review after class. |
-| 36 | 12:50-13:00 | Q&A | Close at 13:00. Do not add a surprise final installation or advanced topic. |
-
-## Reference demo commands
-
-From repository root:
-
-```powershell
-& $py classroom/menu_tools.py
-& $py classroom/agent.py --offline
-& $py classroom/mcp_probe.py
-& $py classroom/mcp_agent.py --offline
-& $py classroom/graph.py --offline
-& $py classroom/graph.py --offline --at 17:00
-& $py classroom/crew.py --offline
-& $py classroom/safety_demo.py
-```
-
-Use the learner lesson for typing steps. The graph and crew are instructor demonstrations. If behind, skip A2A/orchestrator teasers, then shorten the crew demo; protect student build time, break and Q&A.
+Editor commands run inside your_agent/ (or your demo_agent/). Commands starting with classroom/ run from the repository root.

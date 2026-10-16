@@ -22,4 +22,4 @@ Try a canteen-location tool, a clearer closed response, or a one-agent group lun
 
 The older starter/, solutions/ and deep-dives/ examples teach answer verification, error versus no-match handling, bounded loops and more elaborate workflows. They use the previous lesson layout and are not the current classroom starting point. Demo 05 in deep-dives is a role simulation; classroom/crew.py is the actual CrewAI example.
 
-Use the longer study guides for APIs, retrieval, memory, evaluation and operations after the workshop. A first-year student is not expected to master those in the two-hour session.
+Use the longer study guides for APIs, retrieval, memory, evaluation and operations after the workshop. A first-year student is not expected to master those in the 90-minute session.

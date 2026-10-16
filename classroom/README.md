@@ -80,7 +80,7 @@ Run it:
 
 On macOS/Linux use "$PY" menu_tools.py. Expect status ok and Veg sandwich at Rs 60. Try 30: the tool successfully returns an empty list. Remove the temporary print before importing this module from your agent. We have written ordinary Python; no model is involved yet.
 
-**Try this (one minute each):** change the print to `find_food(80, vegetarian=False)` and the Chicken roll appears. Try `find_food(-5)` and the input check refuses it with a clear error. Open data/menu.json, set Poha to `"available": true`, run `find_food(40)`, then change it back.
+**Try this (one minute each):** change the print to `find_food(80, vegetarian=False)` and the Chicken roll appears next to the Veg sandwich. (`False` means "vegetarian not required", so veg dishes still show; it does not mean non-veg only.) Try `find_food(-5)` and the input check refuses it with a clear error. Open data/menu.json, set Poha to `"available": true`, run `find_food(40)`, then change it back.
 
 ## 2. Create the first agent in a new file
 
@@ -123,7 +123,7 @@ How to read the output:
 | `RESULT find_food:` | Your Python ran the function and this is the real data it returned. |
 | `ANSWER:` | The model's final reply, written from those results. |
 
-**Try this:** ask "Find non-vegetarian lunch under Rs 80." and check the arguments in MODEL REQUEST. With a live model, also try deleting the docstring from find_food and asking again: without a description, the model has a harder time knowing when to use the tool.
+**Try this:** ask "Find non-vegetarian lunch under Rs 80." and check the arguments in MODEL REQUEST. With a live model, also try replacing find_food's docstring with something vague, such as `"""Does a thing."""`, and ask again: with a poor description, the model has a harder time knowing when to use the tool. (Deleting the docstring entirely stops the program at `tool(find_food)` with "Function must have a docstring": LangChain refuses to register a tool the model can't understand. Put it back afterwards.)
 
 ## 3. Add a new ability
 

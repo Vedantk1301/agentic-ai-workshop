@@ -56,9 +56,8 @@ CrewAI is optional for students and has a heavier dependency set. The demo is an
 | Material | Purpose |
 | --- | --- |
 | [Classroom lesson](classroom/README.md) | Write a tool, build one agent, add hours and call MCP |
-| [Slides](slides/Agentic%20AI%20in%20Practice.pdf) | Short explanations and activity prompts |
-| [Speaker script](slides/Speaker%20Script.md) and [run sheet](slides/Live%20Run%20Sheet.md) | Exact slide/editor switches and commands |
-| [Curriculum](slides/Curriculum.md) | Two-hour teaching sequence and scope |
+| [Speaker script](slides/Speaker%20Script.md) and [run sheet](slides/Live%20Run%20Sheet.md) | Per-slide timing, screen switches and commands |
+| [Curriculum](slides/Curriculum.md) | The 90-minute timetable (13:30-15:00) and scope |
 | [Setup](docs/SETUP.md), [room guide](docs/ROOM_GUIDE.md) | Installation, access and large-room support |
 | [Learning path](docs/LEARNING_PATH.md) | Manual loop, patterns, project habits and advanced material |
 | classroom/saved_runs/ | Actual captured offline runs, labelled with their mode |

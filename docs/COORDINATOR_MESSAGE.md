@@ -16,4 +16,4 @@ Keep the repository private until Vedant explicitly changes that decision. Distr
 
 Use individual laptops where available, with optional sharing and keyboard turns. The presenter explains from the front; volunteers help seating zones with repeated setup issues. Use a few common build checkpoints instead of inspecting 100-200 screens. Have checkpoint source files and recorded live outputs for recovery, labelled accurately. If support or connectivity is limited, protect the first agent build and shorten later framework demonstrations.
 
-Saturday 17 October 2026, 11:00-13:00 IST, includes a five-minute break and ten-minute Q&A. This is a message draft; nothing has been sent automatically.
+Saturday 17 October 2026, 13:30-15:00 IST in Lab 05 (90 minutes), with a three-minute stretch and ten-minute Q&A. This is a message draft; nothing has been sent automatically.
