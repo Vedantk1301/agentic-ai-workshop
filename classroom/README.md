@@ -226,4 +226,6 @@ AGENTS.md, CLAUDE.md and GEMINI.md support differs by client. Ordinary Markdown 
 
 Add a tool that returns the canteen location; change the graph's closed response; or compare a one-agent group lunch proposal with the two-agent version. Change one thing, explain what should happen, run it and inspect the result. Use docs/LEARNING_PATH.md for optional depth.
 
+**Take-home:** [docs/PROMPTING_AND_PROJECT_FILES.md](../docs/PROMPTING_AND_PROJECT_FILES.md) shows how to write a better system prompt, clear tool descriptions, and README and AGENTS.md files that both people and coding agents can use.
+
 If setup fails, use a checkpoint or saved_runs recording with its mode label. Record whether you ran your code, copied a checkpoint or read a saved output. These are useful recovery routes with different evidence.

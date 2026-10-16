@@ -107,7 +107,7 @@ VS CODE, FULL SCREEN, Tab A. Create my_agent.py and type these lines. Explain ea
 
 **14:04 · 4 min · Editor (your_agent)**
 
-VS CODE, FULL SCREEN. Type create_agent first, then the invoke block, then show_messages, and run once the whole block is in place: python my_agent.py from inside the folder. Point to the three callouts. tool(find_food) wraps your function; LangChain sends its name, arguments and docstring to the model. The most common beginner bug: no docstring, so the model doesn’t know when to use the tool. recursion_limit caps the loop’s internal steps; it is a safety stop, not an exact count of tool calls. If someone is stuck, they can open classroom/first_agent_checkpoint.py, which is this same file.
+VS CODE, FULL SCREEN. Type create_agent first, then the invoke block, then show_messages, and run once the whole block is in place: python my_agent.py from inside the folder. Point to the three callouts. tool(find_food) wraps your function; LangChain sends its name, arguments and docstring to the model. The most common beginner bug: no docstring, so the model doesn’t know when to use the tool. recursion_limit caps the loop’s internal steps; it is a safety stop, not an exact count of tool calls. If someone is stuck, they can open classroom/first_agent_checkpoint.py, which is this same file. Name it out loud: “The system_prompt and the docstring are both prompts. One is the agent’s job description, the other tells it when to use a tool. That’s prompting, and it’s a real engineering skill.”
 
 ## 18. What actually happened.
 
@@ -197,7 +197,7 @@ Tab B, run python classroom/safety_demo.py. We fake a model that asks for a tool
 
 **14:45 · 2 min · Slides**
 
-This is your own conviction, so say it as yours: “I believe the next big step is agents that get better at a job the longer they do it.” Then be precise about today. The model itself doesn’t change. The learning happens OUTSIDE the model, in notes the agent writes and reads: memory, skill files, AGENTS.md or CLAUDE.md. Coding agents already read a project rules file every session, and some write lessons back. In our own repo, AGENTS.md is literally how a coding agent learns the project. Learning inside the weights, continuously and safely, is still active research. Saying that honestly makes your claim stronger, not weaker.
+This is your own conviction, so say it as yours: “I believe the next big step is agents that get better at a job the longer they do it.” Then be precise about today. The model itself doesn’t change. The learning happens OUTSIDE the model, in notes the agent writes and reads: memory, skill files, AGENTS.md or CLAUDE.md. Coding agents already read a project rules file every session, and some write lessons back. In our own repo, AGENTS.md is literally how a coding agent learns the project. Learning inside the weights, continuously and safely, is still active research. Saying that honestly makes your claim stronger, not weaker. Ten-second aside: AGENTS.md is also a prompt, written in structured Markdown (a title, short sections, rules as bullets, commands in code blocks). Open the repo’s real AGENTS.md if there’s time.
 
 ## 33. Where this is heading.
 
@@ -209,7 +209,7 @@ Frame it clearly as your view. 01: the learning loop from the last slide, maturi
 
 **14:49 · 3 min · Slides**
 
-This is where your own tips go: what you’d tell your first-year self, what actually helped you get hired and grow, mistakes to avoid. Use the three cards as the spine and add a personal example to each. This week: rebuild today’s agent with their own data (the hostel mess menu always lands: same code, a new JSON file). This month: build an MCP server for a tool they actually use, and learn one framework properly. This year: learn to test agents (evaluation means checking it picks the right tool and gives a correct answer, like the tests in our repo) and ship one project real people use. Finish on fundamentals: Python, APIs, JSON and Git.
+This is where your own tips go: what you’d tell your first-year self, what actually helped you get hired and grow, mistakes to avoid. Use the three cards as the spine and add a personal example to each. This week: rebuild today’s agent with their own data (the hostel mess menu always lands: same code, a new JSON file). This month: build an MCP server for a tool they actually use, and learn one framework properly. This year: learn to test agents (evaluation means checking it picks the right tool and gives a correct answer, like the tests in our repo) and ship one project real people use. Finish on fundamentals: Python, APIs, JSON and Git. Point them to the take-home guide in the repo, docs/PROMPTING_AND_PROJECT_FILES.md: how to write a better system prompt, clear tool descriptions, and README and AGENTS.md files that people and coding agents can both use.
 
 ## 35. Your agent is 30 lines long. What will you give it next?
 

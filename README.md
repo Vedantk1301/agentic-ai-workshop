@@ -66,6 +66,7 @@ CrewAI is optional for students and has a heavier dependency set. The demo is an
 | [Curriculum](slides/Curriculum.md) | The 90-minute timetable (13:30-15:00) and scope |
 | [Setup](docs/SETUP.md), [room guide](docs/ROOM_GUIDE.md) | Installation, access and large-room support |
 | [Learning path](docs/LEARNING_PATH.md) | Manual loop, patterns, project habits and advanced material |
+| [Prompting and project files](docs/PROMPTING_AND_PROJECT_FILES.md) | Take-home: system prompts, tool descriptions, README and AGENTS.md best practices |
 | classroom/saved_runs/ | Actual captured offline runs, labelled with their mode |
 
 ## Verify the kit
