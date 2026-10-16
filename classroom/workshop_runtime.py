@@ -18,7 +18,9 @@ def make_model(offline=False):
         return ScriptedBrain()
     key, name = configuration()
     if not key:
-        raise RuntimeError('Set the private .env beside this file, or use --offline for a labelled scripted rehearsal.')
+        raise RuntimeError('No Gemini key found in a .env file next to workshop_runtime.py. '
+                           'Set OFFLINE = True in your my_agent.py (or add --offline to the classroom/ scripts) '
+                           'for the scripted rehearsal, or see docs/SETUP.md to add your own key.')
     from langchain_google_genai import ChatGoogleGenerativeAI
     return ChatGoogleGenerativeAI(model=name, api_key=key, temperature=None, timeout=30, max_retries=0)
 

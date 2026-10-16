@@ -1,3 +1,4 @@
 # The classroom core stays smaller; only the presenter needs this team demo.
+# crewai 1.6.1 needs Python 3.11 to 3.13 (no 3.14 wheels yet).
 -r requirements.txt
 crewai==1.6.1

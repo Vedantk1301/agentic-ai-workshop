@@ -167,11 +167,39 @@ tools=[tool(find_food), tool(get_canteen_hours)],
 
 The snippet above shows replacements in different locations, not a second complete program. Run my_agent.py again. Expect actual food and hours results; default mock time is 12:30 and closing time 16:00. A live model can choose a different call order. Explain what the second tool added.
 
-**Try this:** change the budget to Rs 30. The correct answer is "nothing available"; check that it doesn't invent a dish. With a live model, ask only "Is the canteen open?" and see which tool it chooses. (The OFFLINE scripted brain always checks the menu first, so this one needs live mode.)
+**Try this:**
 
-## 4. Expose the same functions through MCP
+- Change the budget to Rs 30. The correct answer is "nothing available"; check that it doesn't invent a dish.
+- With a live model, ask only "Is the canteen open?" and see which tool it chooses. A live model calls only the hours tool; the OFFLINE scripted brain checks the menu first anyway, because it follows fixed rules. That difference is exactly what "the model decides" means.
+- Ask for **non-vegetarian** lunch. The tool can only say `vegetarian=True` (veg only) or `False` (anything), so it returns both dishes and the model has to filter in its answer. That's a tool-design gap: a better tool would take `diet="veg" | "non-veg" | "any"`. Good tools make the model's job easy; try adding that as an extension.
 
-Create mcp_server.py in your_agent:
+## 4. MCP: the same tools, plugged in a standard way
+
+**In class:** just watch this part; the instructor runs it on screen. **After class, or if you finish early:** build it yourself below.
+
+**What MCP is, in one paragraph.** Your `find_food` only works inside your own Python program. MCP (Model Context Protocol) is a standard "plug" for tools: you put your functions behind a small **MCP server**, and any MCP-aware app (a LangChain agent, LangGraph, CrewAI, Claude Desktop, Cursor) can discover and call them, without you rewriting them. The server has no model and makes no decisions. It only offers tools.
+
+### 4a. See it work (no new files, about one minute)
+
+Stay in `your_agent/`. These run the ready-made versions in `classroom/`:
+
+```powershell
+& $py ../classroom/mcp_probe.py
+```
+
+Expect `DISCOVERED: find_food, get_canteen_hours` and then `MCP RESULT:` with the Veg sandwich. That's a real MCP call with no AI involved: the client asked the server which tools it has, then called one.
+
+```powershell
+& $py ../classroom/mcp_agent.py --offline
+```
+
+Expect the same answer as your own agent. **The tools didn't change; only how they're connected.**
+
+### 4b. Build your own server (optional)
+
+In `your_agent/`, create **two** files. You never start the server yourself: `mcp_connection.py` (already in your folder) launches it in the background whenever a client needs it.
+
+**File 1: `mcp_server.py`**, the server. It registers your existing functions, unchanged:
 
 ```python
 """Local MCP server: the SAME two functions, exposed over stdio."""
@@ -186,9 +214,9 @@ if __name__ == '__main__':
     server.run(transport='stdio')
 ```
 
-This registers the same two functions rather than rewriting their logic. The prepared mcp_connection.py starts this local server using the current Python executable. Keep the server filename exact. Stdio carries protocol messages; avoid adding print statements to server stdout.
+Keep the file name exactly `mcp_server.py`, and never add `print` to it: the server talks to clients through standard output, and a stray print would corrupt the messages.
 
-Create a small probe.py first:
+**File 2: `probe.py`**, a tiny client that starts your server, lists its tools and calls one:
 
 ```python
 import asyncio
@@ -205,22 +233,31 @@ async def main():
 asyncio.run(main())
 ```
 
-Run & $py probe.py. This is a real MCP call and needs no model key. Expect two tool names and the sandwich record. Lines starting with INFO are the server's own log messages; you can ignore them. The server is a local child process; no separate server terminal or deployment is needed.
-
-To see the agent using MCP, open the short checkpoint classroom/mcp_agent.py. It discovers tools, passes them into create_agent and uses ainvoke inside the connection lifetime. You can copy it into your_agent as mcp_agent.py and run it with --offline, or continue using the direct-function agent if time is short.
-
-## 5. Watch two small framework variations
-
-Return to the downloaded repository root before using these reference commands:
+Run it:
 
 ```powershell
-& $py classroom/graph.py --offline
-& $py classroom/graph.py --offline --at 17:00
+& $py probe.py
 ```
 
-The graph checks hours through MCP. At 12:30 it invokes the lunch agent; at 17:00 it takes the closed route without the lunch agent. State is carried information, a node is a step, and an edge is a route. LangGraph can contain flexible agent loops.
+Expect `['find_food', 'get_canteen_hours']` and then the sandwich record. Lines starting with `INFO` are the server's own logs; ignore them.
 
-The instructor also runs classroom/crew.py --offline after installing requirements-instructor.txt. These are actual CrewAI agents and tasks with a sequential handoff, using scripted brains in offline mode. The scout uses the same MCP service; the planner receives its findings. Two portions of the sandwich cost Rs 120. Ask whether this small job needs two agents.
+To connect an *agent* to your server, look at `classroom/mcp_agent.py`: it is your Step 2 agent, except the tools come from `connected_tools()` instead of `tool(find_food)`.
+
+## 5. Watch two framework variations
+
+**In class: the instructor runs these.** You can run them too, from `your_agent/`:
+
+```powershell
+& $py ../classroom/graph.py --offline
+```
+
+```powershell
+& $py ../classroom/graph.py --offline --at 17:00
+```
+
+**LangGraph, a workflow:** the graph checks the hours first, and **code** decides the route. At 12:30 it runs the lunch agent; at 17:00 it takes the "closed" route and never calls the model. Vocabulary: *state* is the information carried along, a *node* is a step, an *edge* is which step comes next.
+
+**CrewAI, two agents:** the instructor also runs `classroom/crew.py --offline`. A "menu scout" agent finds options through the same MCP server and hands them to a "lunch planner" agent, which proposes 2 × Veg sandwich = Rs 120. CrewAI is an instructor-only install (`requirements-instructor.txt`) and needs Python 3.11 to 3.13. Ask yourself: did this small job really need two agents?
 
 ## 6. Keep your project understandable
 

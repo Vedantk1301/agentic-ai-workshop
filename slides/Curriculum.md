@@ -48,7 +48,7 @@ Protect the student build (slides 15-19) and Q&A. Cut in this order: flash the c
 
 ## Before class
 
-- Two terminal tabs: Tab A in your own learner folder (python tools/start_here.py demo_agent), Tab B at the repository root.
+- One terminal, inside your own learner folder (python tools/start_here.py demo_agent, then cd demo_agent), with $py set to .venv-build-first. Demos run as ../classroom/name.py.
 - VS Code font 24+; switch full screen between slides and editor, never split screen.
 - Confirm the workshop Python on the lab machines ($py in the README) and how the kit ZIP reached students.
 - Optional: a printed A4 copy of the menu for slide 13.

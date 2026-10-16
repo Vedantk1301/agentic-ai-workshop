@@ -77,7 +77,7 @@ Pause and let it land. Both products use retrieval; both care about accuracy. Wh
 
 **13:53 · 1 min · Editor (your_agent)**
 
-Set up BEFORE class: two terminal tabs. Tab A is your own learner folder, created from the repo root with “python tools/start_here.py demo_agent”, then “cd demo_agent”. You build my_agent.py there, exactly like the students. Tab B stays at the repository root for the reference demos (python classroom/...). Switch full screen between slides and VS Code; don’t split the screen, because code becomes unreadable. VS Code font at least 24. Students: their terminal should be inside your_agent/, created before class by tools/start_here.py. Say clearly: “You don’t need to type to learn this. If setup isn’t working, watch. Every step has a checkpoint in classroom/.” Point to the volunteers.
+Set up BEFORE class: ONE terminal in VS Code, inside your own learner folder. From the repo root run tools/start_here.py demo_agent, then cd demo_agent. Set $py to C:\vedant-side\workshop\.venv-build-first\Scripts\python.exe (Python 3.11 with every package, CrewAI included). You build exactly what students build there, and the classroom demos run from the same terminal as ../classroom/name.py. Switch full screen between slides and VS Code; don’t split the screen. VS Code font at least 24. Students: their terminal is inside your_agent/. Say clearly: “Copy the code from classroom/README.md; I’ll explain the lines that matter. Can’t get it running? Watch. Every step has a finished version in classroom/.” Point to the volunteers.
 
 ## 13. Who does what?
 
@@ -95,19 +95,19 @@ Let the room shout. Answer: only the Veg sandwich. Poha is cheaper but sold out,
 
 **13:57 · 5 min · Editor (your_agent)**
 
-SWITCH TO VS CODE, FULL SCREEN, Tab A (your demo_agent folder). Create menu_tools.py and type it from README Step 1: the three imports (json, datetime, Path), the MENU line that reads data/menu.json, the function with its two input checks, and a temporary print(find_food(80)) at the bottom. Explain only: arguments, the loop over four dishes, two skip rules, return a dictionary. The input checks reject a negative budget; mention that as a safety habit. Run: python menu_tools.py. Expect status ok and Veg sandwich at ₹60. Try 30: an empty list, which is a correct answer. Then DELETE the temporary print line before Step 2, otherwise it prints every time the agent imports the file. Point: this is ordinary, testable software. The docstring and type hints matter in the next step because the model reads them. Checkpoint: thumbs up if you see the sandwich.
+SWITCH TO VS CODE, FULL SCREEN. Everyone copies README Step 1 into a new menu_tools.py in their folder; nobody types it. While they paste, explain four things: MENU loads the four dishes from data/menu.json (facts live in data); the input check refuses bad arguments such as a negative budget (a safety habit); the two continue lines are the two rules; the function returns plain data, not a sentence. Point at the last block: if __name__ == “__main__” runs the test print only when this file is run directly, and keeps it silent when the agent or the MCP server imports it. Run: & $py menu_tools.py. Expect status ok and Veg sandwich at ₹60. Then change it to find_food(30): an empty list with status ok is a correct answer (checked, nothing matches), which is different from a failure. Thumbs up if you see the sandwich.
 
 ## 16. Bring in the pieces.
 
 **14:02 · 2 min · Editor (your_agent)**
 
-VS CODE, FULL SCREEN, Tab A. Create my_agent.py and type these lines. Explain each import in one sentence. The important one is OFFLINE. With True, workshop_runtime gives you a scripted brain: LangChain and your Python tool really run, but the decisions are pre-written, so it is not real AI. Set it to False only if you have your own key in .env and have tested it (docs/SETUP.md). Never share keys. Note: adding “--offline” on the command line does nothing for this file, because my_agent.py doesn’t read command-line arguments. The OFFLINE line is the switch. If live Gemini returns a 503 or high-demand error, flip it to True and keep going; don’t spend class time retrying.
+VS CODE, FULL SCREEN. Students copy the whole README Step 2 block into my_agent.py. Explain the top in one breath: two LangChain imports (create_agent builds the loop, tool wraps a function), our own find_food, and workshop_runtime, the provided helper that builds the model and prints each step. The important line is OFFLINE. True gives a scripted brain: LangChain and the tool really run, but the decisions are pre-written, so it works with no API key and is not real AI. False uses live Gemini and needs a key in .env (docs/SETUP.md); without one, the error tells them to set OFFLINE = True. Never share keys. If live Gemini returns 503 or high demand, flip to True and keep going.
 
 ## 17. Hand the function to a model.
 
 **14:04 · 4 min · Editor (your_agent)**
 
-VS CODE, FULL SCREEN. Type create_agent first, then the invoke block, then show_messages, and run once the whole block is in place: python my_agent.py from inside the folder. Point to the three callouts. tool(find_food) wraps your function; LangChain sends its name, arguments and docstring to the model. The most common beginner bug: no docstring, so the model doesn’t know when to use the tool. recursion_limit caps the loop’s internal steps; it is a safety stop, not an exact count of tool calls. If someone is stuck, they can open classroom/first_agent_checkpoint.py, which is this same file. Name it out loud: “The system_prompt and the docstring are both prompts. One is the agent’s job description, the other tells it when to use a tool. That’s prompting, and it’s a real engineering skill.”
+Still in the editor. Point at the three callouts, then run & $py my_agent.py. tool(find_food) wraps the function; LangChain sends its name, arguments and docstring to the model. recursion_limit is the loop’s safety stop. If your key works, do the planned moment: run once with OFFLINE = True, flip to False, run again, and show both answers side by side. Same tool, same data, same result, but the live model chose its own argument order and wrote its own sentence. That is the brain changing while the hands stay the same. Name it out loud: “The system_prompt and the docstring are both prompts. One is the agent’s job description, the other tells it when to use a tool. That’s prompting.” Stuck students can open classroom/first_agent_checkpoint.py.
 
 ## 18. What actually happened.
 
@@ -119,13 +119,13 @@ Show your own terminal output next, full screen, and compare it line by line wit
 
 **14:10 · 8 min · Slides**
 
-Students make three edits: add the function to menu_tools.py (datetime is already imported from Step 1), change the import line, add the tool to the list, and change the question. Do it live on your screen too, then let them work. Volunteers circulate. After about 5 minutes run yours: python my_agent.py. With OFFLINE=True expect two MODEL REQUEST lines. With a live model, also try just “Is the canteen open?” and see which tool it picks; the OFFLINE scripted brain always checks the menu first, so don’t demo that offline. Point: you wrote no if-statement deciding which tool to call; the model chose. With a live model, the call order can vary. ₹30: the correct answer is “nothing available” (poha is ₹35 and sold out anyway). If it invents something, that’s a great lesson about checking outputs. Saved backup: classroom/saved_runs/agent-budget30.txt. Stretch break at 14:18 sharp.
+Students copy README Step 3: the hours function into menu_tools.py ABOVE the if __name__ block, then the import, tool list and question in my_agent.py. Do it on your screen too, then let them work while volunteers circulate. After about 5 minutes run yours. Offline: two MODEL REQUEST lines. Planned moment if live works: ask just “Is the canteen open?” live, then offline. Live calls only the hours tool; the scripted brain checks the menu first anyway because it follows fixed rules. Say: “That difference is exactly what ‘the model decides’ means. Nobody wrote an if statement.” If someone asks for non-veg, show the tool gap: vegetarian=False means “anything”, so the model filters in prose; a better tool would take diet = veg, non-veg or any. ₹30: correct answer is “nothing available”. Backup: classroom/saved_runs/agent-budget30.txt. Stretch break at 14:18 sharp.
 
 ## 20. Three minutes.
 
-**14:18 · 3 min · Terminal (repo root)**
+**14:18 · 3 min · Slides**
 
-Volunteers help anyone whose agent didn’t run; the checkpoint is classroom/agent.py. You: switch to Tab B at the repository root and run python classroom/mcp_probe.py once, so the first live run isn’t slow.
+Volunteers help anyone whose agent didn’t run; the checkpoint is classroom/agent.py. You: in your same terminal, run & $py ../classroom/mcp_probe.py once, so the first demo run isn’t slow.
 
 ## 21. Write the tool once. Plug it in anywhere.
 
@@ -135,9 +135,9 @@ Problem first: we wrote find_food for LangChain. Tomorrow you want it in CrewAI,
 
 ## 22. Same tools, now over MCP.
 
-**14:23 · 2 min · Terminal (repo root)**
+**14:23 · 2 min · Terminal demo (your_agent)**
 
-Tab B, repository root, full screen. Run 1 needs no key: point at the tool list. The client learned names, arguments and descriptions from the server. Run 2: the same answer as before the break, now via MCP. These reference scripts accept --offline (scripted brain, real MCP and LangChain). Use live mode only if you’ve tested your key tonight; if Gemini returns 503 or high demand, switch to --offline immediately. Students who want to try it themselves: README Step 4 has a probe.py they can create in your_agent/. Bridge: “Every framework can now use the same canteen tools. So which design to use becomes a decision. That’s next.”
+Same terminal, still inside your learner folder. Run 1 needs no key: point at DISCOVERED, the client learned the tool names, arguments and descriptions from the server, then made a real call. Run 2: the same answer as before the break, now via MCP. Ask: “Is the MCP server an agent?” No: it has only one of the four parts, tools. No model, no instructions, no loop. MCP is the protocol; the server is a shop of tools that agents can use. Use --offline unless your key was tested tonight; on 503 or high demand, switch at once. Fast students can build their own server later: README Step 4b. Bridge: “Every framework can now use the same canteen tools. So which design to use becomes a decision.”
 
 ## 23. When to use what.
 
@@ -159,15 +159,15 @@ Don’t read the table. Give one real example per row. Prompt: rewrite my email.
 
 ## 26. What if the canteen is closed?
 
-**14:30 · 3 min · Terminal (repo root)**
+**14:30 · 3 min · Terminal demo (your_agent)**
 
-Ask the room to PREDICT before running: at 12:30 which route? At 17:00? Then run both from Tab B at the repository root. Expected: ROUTE: hours -> agent, then ROUTE: hours -> closed with “No menu lookup needed.” One-line vocabulary: state is the information carried forward, a node is a step, an edge is which step comes next. Why not let the agent decide if it’s open? Because it’s a fixed rule. Code is cheaper, faster and never confused about it. Notice the agent sits INSIDE the graph: workflow and agent aren’t rivals, you combine them. Most production systems look like this. Drop --offline only if your live key is tested.
+Ask the room to PREDICT before running: at 12:30 which route? At 17:00? Then run both in your same terminal (../classroom/graph.py). Expected: ROUTE: hours -> agent, then ROUTE: hours -> closed with “No menu lookup needed.” One-line vocabulary: state is the information carried forward, a node is a step, an edge is which step comes next. Why not let the agent decide if it’s open? Because it’s a fixed rule. Code is cheaper, faster and never confused about it. Notice the agent sits INSIDE the graph: workflow and agent aren’t rivals, you combine them. Most production systems look like this.
 
 ## 27. A scout hands off to a planner.
 
-**14:33 · 2 min · Slides**
+**14:33 · 2 min · Terminal demo (your_agent)**
 
-Real CrewAI agents with a role, goal and backstory, running two tasks in sequence. The planner receives the scout’s output as context. Same MCP server as everything else. Then ask the question on the slide. A team adds coordination overhead: more model calls, more waiting, and a new place to fail at the handoff. Don’t guess numbers; the honest engineering answer is “measure calls, latency and quality, then decide.” Several agents earn their cost when roles really differ (a researcher and an independent fact-checker), when work can run in parallel, or when each agent needs different tools or permissions. This is not A2A: these are two agents inside one Python program. If asked, MCP connects an agent to tools; A2A is a protocol for separate agent systems to talk to each other. If running late, skip the live run and read classroom/saved_runs/crew.txt aloud: two lines.
+Real CrewAI agents with a role, goal and backstory, running two tasks in sequence. The planner receives the scout’s output as context. Same MCP server as everything else. Then ask the question on the slide. A team adds coordination overhead: more model calls, more waiting, and a new place to fail at the handoff. Don’t guess numbers; the honest engineering answer is “measure calls, latency and quality, then decide.” Several agents earn their cost when roles really differ (a researcher and an independent fact-checker), when work can run in parallel, or when each agent needs different tools or permissions. This is not A2A: these are two agents inside one Python program. If asked, MCP connects an agent to tools; A2A is a protocol for separate agent systems to talk to each other. Run it with your .venv-build-first Python: CrewAI 1.6.1 does not install on Python 3.14. If running late, skip the live run and read classroom/saved_runs/crew.txt aloud: two lines.
 
 ## 28. Pick one. Choose the design. Name one way it fails.
 
@@ -189,9 +189,9 @@ Be honest; it builds credibility. Note the word “reduce”: none of these full
 
 ## 31. Prompts guide. Code enforces.
 
-**14:43 · 2 min · Terminal (repo root)**
+**14:43 · 2 min · Terminal demo (your_agent)**
 
-Tab B, run python classroom/safety_demo.py. We fake a model that asks for a tool called delete_everything, the way a prompt-injected model might. Our loop checks the name against the list of allowed tools BEFORE running anything, and refuses. Be exact about what this proves: it rejects an unauthorised tool NAME. It does not stop an allowed tool being called with harmful arguments. That’s why find_food also validates its inputs (no negative prices). You can write “never delete things” in the prompt and the model will usually listen. Usually isn’t good enough; code checks are the real boundary.
+Same terminal: & $py ../classroom/safety_demo.py. We fake a model that asks for a tool called delete_everything, the way a prompt-injected model might. Our loop checks the name against the list of allowed tools BEFORE running anything, and refuses. Be exact about what this proves: it rejects an unauthorised tool NAME. It does not stop an allowed tool being called with harmful arguments. That’s why find_food also validates its inputs (no negative prices). You can write “never delete things” in the prompt and the model will usually listen. Usually isn’t good enough; code checks are the real boundary.
 
 ## 32. Agents that learn on the job.
 
