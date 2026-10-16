@@ -13,3 +13,6 @@ Thumbs.db
 .idea/
 .vscode/
 node_modules/
+your_agent/
+.crewai/
+.superpowers/

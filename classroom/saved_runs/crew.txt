@@ -1,0 +1,34 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/crew.py --offline
+
+BRAIN: SCRIPTED REHEARSAL (not a real AI)
+TOOLS: real CrewAI tasks / MCP stdio tools
+┌───────────────────────────── 🔌 MCP Connection ─────────────────────────────┐
+│                                                                             │
+│  MCP Connection Started                                                     │
+│                                                                             │
+│  Server: C:\vedant-side\workshop\.venv-build-first\Scripts\python.exe       │
+│  C:\vedant-side\workshop\github\agentic-ai-workshop\classroom\mcp_server.p  │
+│  y                                                                          │
+│  Transport: stdio                                                           │
+│  Timeout: 30s                                                               │
+│                                                                             │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────── ✅ MCP Connected ──────────────────────────────┐
+│                                                                             │
+│  MCP Connection Completed                                                   │
+│                                                                             │
+│  Server: C:\vedant-side\workshop\.venv-build-first\Scripts\python.exe       │
+│  C:\vedant-side\workshop\github\agentic-ai-workshop\classroom\mcp_server.p  │
+│  y                                                                          │
+│  Transport: stdio                                                           │
+│  Duration: 1934.71ms                                                        │
+│                                                                             │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+SCOUT HANDOFF: {"status": "ok", "matches": [{"name": "Veg sandwich", "price": 60}]}
+PLANNER: Two people: 2 x Veg sandwich at Rs 60 = Rs 120. Group budget Rs 150.

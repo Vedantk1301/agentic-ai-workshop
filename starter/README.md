@@ -1,5 +1,8 @@
 # Classroom starter
 
+> Earlier edition, optional reference. For the current build-first workshop start with classroom/README.md from the repository root.
+
+
 Use the repository-root setup in [README](../README.md). Keep one .venv at the root. All commands below run from that root, not from this folder. Work on your own laptop where available. Sharing is optional; take turns editing and keep an individual note of what you understand.
 
 The instructor will demonstrate a small step, give everyone time to try, then check the room. Show **1 finger: ready, 2: need help, 3: using a saved trace**. A helper may come to you; continue the next reading/review task while waiting. Do not wait for the instructor to inspect every laptop.

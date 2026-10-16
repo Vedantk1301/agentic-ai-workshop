@@ -1,0 +1,6 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/mcp_probe.py
+
+DISCOVERED: find_food, get_canteen_hours
+MCP RESULT: [{'type': 'text', 'text': '{\n  "status": "ok",\n  "matches": [\n    {\n      "name": "Veg sandwich",\n      "price": 60\n    }\n  ]\n}', 'id': 'lc_663046a5-cc64-4237-ab22-9fe38284a64c'}]

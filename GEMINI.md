@@ -1,5 +1,5 @@
-# Gemini CLI entry point
+# Context for Gemini-based coding clients
 
 @./AGENTS.md
 
-Use /memory show to inspect context and /memory reload after editing it. Other clients may discover instructions differently; inspect their loaded rules.
+Read AGENTS.md and classroom/README.md for the current build-first lesson. Client support for this file and imports varies; inspect your client's loaded instructions rather than assuming arbitrary Markdown is enforced.

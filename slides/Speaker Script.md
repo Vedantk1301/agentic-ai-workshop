@@ -1,191 +1,688 @@
-# Classroom speaker script
+# Build first workshop speaker script
 
-Trimmed 31-slide edition, 15 October 2026. Planned 120-minute slots, including a five-minute break and ten-minute Q&A. Rehearse with a timer. Use starter/README.md and docs/ROOM_GUIDE.md in the GitHub kit. Individual work is the default; sharing is optional. Follow the five common checkpoints. The 53-slide v3 deck is optional reference.
+36 slides. 120 minutes including break and Q&A. Use the live run sheet for exact commands. Rehearse; planned timings are not a measured delivery time.
 
-## Slide 1: VIT MUMBAI  ·  17 OCTOBER 2026
+## Slide 1: Build your first AI agent
 
-Slot 11:00:00–11:01:00 IST (60 seconds).
+Slot 11:00:00–11:01:30 IST (90 seconds).
 
-Welcome. Plan for a possible 100-200 students, with actual attendance still to be confirmed. Each student records a useful instruction, a small code change and its result, and a review finding. Use your own laptop where available; sharing is optional. Explain that we will work together through common checkpoints. The presenter leads from the front; helpers, if available, handle individual laptop issues.
+SAY
+We will build a small program that uses AI to choose tools. By the end you should understand one working loop and know why you might choose a graph or a team.
 
-## Slide 2: You have ₹80.
-Attendance in 10 minutes.
-You're hungry.
+DO / SCREEN
+Have the new learner folder ready, with no menu_tools.py or my_agent.py. Open only the lesson and clean terminal; close private .env tabs.
 
-Slot 11:01:00–11:03:00 IST (120 seconds).
+ASK
+Who has used a chatbot? Who has written a Python function?
 
-Ask which facts the assistant needs: budget, diet, stock and hours. Let everyone write a prediction first, then take two answers from different seating areas. Students can use their own laptop, share by taking turns, or record answers on paper. Do not assume everyone completed the earlier speaker setup.
+FALLBACK
+Sharing and checkpoint files are available. Do not turn the introduction into installation support.
 
-## Slide 3: Overconfident AI recommends…
+SOURCES
 
-Slot 11:03:00–11:06:00 IST (180 seconds).
 
-Introduce Canteen Bhaiya and Overconfident AI briefly. Give students thirty seconds to identify the nonexistent wrap, then sample answers. This is a constructed bad answer, not a measured Gemini failure. Point out the real sandwich, sold-out poha, non-vegetarian chicken and over-budget dosa.
+## Slide 2: You have Rs 80 and ten minutes
 
-## Slide 4: AI writes the order slip. Code makes the food.
+Slot 11:01:30–11:03:30 IST (120 seconds).
 
-Slot 11:06:00–11:10:00 IST (240 seconds).
+SAY
+Use a familiar deadline: the next lecture starts soon and you need lunch. Ask what information matters before saying any framework names.
 
-Slowly trace model request, application execution and tool result. Use the order-slip analogy. A tool is ordinary code. A model can request a tool but does not directly run Python. Ask a student who actually reads the menu. If the answer is unclear, repeat this diagram instead of adding MCP terminology.
+DO / SCREEN
+Show a rehearsed short real run if available. Otherwise state clearly that the scripted preview is a rehearsal and the actual tool data is local.
 
-## Slide 5: Google AI Studio setup
+ASK
+Budget? Diet? Availability? Opening hours?
 
-Slot 11:10:00–11:14:00 IST (240 seconds).
+FALLBACK
+Use classroom/saved_runs/agent.txt. Read its SCRIPTED label aloud.
 
-Four-minute instructor demonstration, not simultaneous audience account creation. Open AI Studio and show API Keys using blank or masked configuration. New users may have a default project/key; otherwise show the creation route. Check free-tier/model access without promising eligibility or quota. Students continue with offline tasks and may configure live use privately outside the activity. No Cloud Console provisioning, billing upgrade or credit purchase. Sources: https://ai.google.dev/gemini-api/docs/api-key and https://ai.google.dev/gemini-api/docs/billing
+SOURCES
 
-## Slide 6: Connect the prepared Python demo
 
-Slot 11:14:00–11:17:00 IST (180 seconds).
+## Slide 3: What makes this an agent?
 
-Show starter/.env.example with a blank key. Explain private .env configuration as GOOGLE_API_KEY and the separate GEMINI_MODEL setting. Do not type, reveal or distribute a real key. Demonstrate with prepared or masked configuration, not a room-wide setup pause. Run starter/check_setup.py and the actual live agent privately before class if showing Gemini. Coding-assistant sign-in and this application key are separate. AI Studio is 18+; unavailable accounts continue offline. Sources: https://ai.google.dev/gemini-api/docs/api-key and https://ai.google.dev/gemini-api/docs/available-regions
+Slot 11:03:30–11:05:30 IST (120 seconds).
 
-## Slide 7: Checkpoint 0: run the starter
+SAY
+The agent is the whole program: model, instructions, permitted tools and the loop around them. A model response alone is not Python execution.
+
+DO / SCREEN
+
+
+ASK
+Does the model magically know our current menu?
+
+FALLBACK
+
+
+SOURCES
+https://docs.langchain.com/oss/python/langchain/agents
+
+## Slide 4: Act out the tool call
+
+Slot 11:05:30–11:08:30 IST (180 seconds).
+
+SAY
+Ask three volunteers to play the user, model and menu tool. Keep the whole role-play to two minutes. The tool holder has the four fictional records. The model must ask for them before recommending food.
+
+DO / SCREEN
+Use the menu on the next slide or the data file; no printed props are required.
+
+ASK
+Who actually looked at the menu?
+
+FALLBACK
+Play all three roles from the front if volunteers are slow.
+
+SOURCES
+
+
+## Slide 5: Give each part one job
+
+Slot 11:08:30–11:10:00 IST (90 seconds).
+
+SAY
+Name each part only after the role-play. Point from user to model to application function, and then back with the result. Do not add MCP or multi-agent terminology yet.
+
+DO / SCREEN
+
+
+ASK
+Can the model request a function our app has not allowed?
+
+FALLBACK
+
+
+SOURCES
+
+
+## Slide 6: Our entire canteen menu
+
+Slot 11:10:00–11:13:00 IST (180 seconds).
+
+SAY
+Four records are enough. Only the sandwich qualifies. The hours fixture is 09:00-16:00 and mock time is 12:30. These are fictional teaching records.
+
+DO / SCREEN
+Switch briefly to classroom/data/menu.json and point out the four fields. Return to the slide before typing.
+
+ASK
+Why does the cheaper poha not qualify?
+
+FALLBACK
+
+
+SOURCES
+
+
+## Slide 7: A tool starts as a function
+
+Slot 11:13:00–11:17:00 IST (240 seconds).
+
+SAY
+Explain function, argument and return value just in time. This slide is an outline with an ellipsis, not the runnable solution. Use the full small function in the lesson.
+
+DO / SCREEN
+In your new learner folder create menu_tools.py. Add imports/data loading, then find_food from classroom/README.md. Use the readable for loop. Run: & $py menu_tools.py
+
+ASK
+Which values go in? What comes back?
+
+FALLBACK
+Open classroom/menu_tools.py as the labelled completed checkpoint.
+
+SOURCES
+
+
+## Slide 8: Your turn: run the tool
 
 Slot 11:17:00–11:20:00 IST (180 seconds).
 
-Three-minute Checkpoint 0. Dependencies should already be installed. From the repository root run starter/agent.py --offline. Explicitly label the rule-based stand-in; the agent/tool plumbing still executes. Expected sandwich Rs 60 and closing time 16:00. Explain signals: 1 finger ready, 2 need help, 3 using saved trace. Helpers handle individual issues if available. Without helpers, address a repeated error briefly from the front and direct blocked students to deep-dives/demo/saved_runs/02_agent_lunch_and_hours_OFFLINE.txt, source and menu. Students record executed locally or read trace. Do not wait to inspect every laptop. Copy the supplied notes template or use paper.
+SAY
+Give students three minutes to run it. Show the slide while they type. Ask for ready/help/checkpoint signals. Do not inspect every laptop.
 
-## Slide 8: Give each file one job
+DO / SCREEN
+Expect sandwich at 80 and an empty matches list at 30. Remove the temporary top-level print before importing the module.
+
+ASK
+Is an empty result the same as a failed lookup?
+
+FALLBACK
+Copy classroom/menu_tools.py into the learner folder, or read its saved result and label what happened.
+
+SOURCES
+
+
+## Slide 9: Let the model request the function
 
 Slot 11:20:00–11:23:00 IST (180 seconds).
 
-Show these files inside starter/. Explain each reader and purpose. Tests are in deep-dives/demo/tests/ for later practice. Ask: where does stock belong? Where does the run command belong? Do not lecture on every folder or require everyone to create an empty repository.
+SAY
+The description tells the model when the function is relevant. A tool request has a name and arguments. The library routes an allowed request to Python and returns the actual result.
 
-## Slide 9: Markdown basics
+DO / SCREEN
+Point to the name find_food and max_price=80 in a saved or rehearsed live trace.
+
+ASK
+Who reads the JSON file?
+
+FALLBACK
+
+
+SOURCES
+https://docs.langchain.com/oss/python/langchain/agents
+
+## Slide 10: The ReAct-style loop
 
 Slot 11:23:00–11:26:00 IST (180 seconds).
 
-Three minutes. Type a title, a Requirements heading and two bullets in a scratch Markdown note. Show preview. Each student writes one clear requirement. Mention the starter/workshop_notes.template.md for recording checkpoint evidence. Avoid Markdown extensions and front matter.
+SAY
+Explain ReAct as reasoning and acting in a loop. We inspect tool actions and results, not private chain-of-thought. Our tool-calling agent illustrates this pattern; we are not reproducing every detail of the original paper.
 
-## Slide 10: Write the outcome before asking for code
+DO / SCREEN
+Explain the five-line conceptual loop in the preparation guide. LangChain manages message bookkeeping in the student build.
 
-Slot 11:26:00–11:29:00 IST (180 seconds).
+ASK
+What should happen when the agent has enough information?
 
-The change is intentionally small. A first-year student can understand the budget change. A senior student should explain the evidence and failure cases. Read the three checks aloud. Do not expand this into a full new chatbot build.
+FALLBACK
 
-## Slide 11: Useful instructions for an AI coder
 
-Slot 11:29:00–11:32:00 IST (180 seconds).
+SOURCES
+https://arxiv.org/abs/2210.03629
 
-Read the existing AGENTS.md. Demonstrate one shared instruction file in the active client. Current Antigravity supports workspace AGENTS.md and GEMINI.md; check loaded rules for the installed version. Mention CLAUDE.md for Claude Code and GEMINI.md for Gemini CLI in one sentence only. Do not install three clients. These files guide a coding assistant; the Python demo does not automatically read them. Source: https://www.antigravity.google/docs/rules
+## Slide 11: Build with LangChain
 
-## Slide 12: Checkpoint 1: useful instructions
+Slot 11:26:00–11:30:00 IST (240 seconds).
 
-Slot 11:32:00–11:36:00 IST (240 seconds).
+SAY
+Write this in a new my_agent.py. Explain model, tools and instruction. make_model is supplied configuration/fallback support; create_agent is the framework loop. OFFLINE=True is scripted rehearsal; False requires a privately configured tested live model.
 
-Four-minute Checkpoint 1. Each student writes five useful instruction lines in their own scratch note or on paper, then adds the best line to supplied starter/AGENTS.md without removing existing guidance. Sharing a laptop is optional; each student records their own line and a way to check it. Ask for progress signals and sample two answers from different seating areas. Do not walk to every laptop. Example: do not change menu records to make a test pass.
+DO / SCREEN
+Use the full 18-line first-agent checkpoint from classroom/README.md. Add imports, then agent creation, then invocation and show_messages. Run: & $py my_agent.py
 
-## Slide 13: Read one menu record
+ASK
+Where did we give the model permission to request find_food?
 
-Slot 11:36:00–11:40:00 IST (240 seconds).
+FALLBACK
+Use classroom/first_agent_checkpoint.py after the menu tool exists.
 
-Four minutes. Open data/menu.json and read one record slowly. Name, integer rupee price, boolean vegetarian and stock. Explain true/false and double-quoted JSON strings. Ask why an instruction saying “always recommend sandwich” cannot establish stock. No JSON-schema lecture.
+SOURCES
 
-## Slide 14: Demo 1: a tool is just a function
 
-Slot 11:40:00–11:44:00 IST (240 seconds).
+## Slide 12: Build and run your first agent
 
-Run part A of 01 once, or open its saved output. Read find_food(max_price=80, vegetarian=True). Ask which records are excluded and why. Stay on the small function and its return value. Do not explain package imports or all helper modules.
+Slot 11:30:00–11:40:00 IST (600 seconds).
 
-## Slide 15: ReAct: think, act, look, repeat
+SAY
+Protect these ten minutes. Let students type and run the small file. Stay on this slide. Volunteers handle individual setup; explain repeated mistakes from the front.
 
-Slot 11:44:00–11:47:00 IST (180 seconds).
+DO / SCREEN
+Use & $py my_agent.py in the learner folder. Have students point to MODEL REQUEST and RESULT. Explain the mode label. For live calls, observe actual behavior rather than expecting an exact sentence.
 
-Explain ReAct as reasoning/action/observation using the lost-charger analogy. We can inspect tool requests and results; we are not displaying hidden reasoning. After every result the next request can depend on what was found. Keep to one loop and one example.
+ASK
+What did you write, and what did LangChain handle?
 
-## Slide 16: Game: predict the next tool
+FALLBACK
+Run & $py classroom/agent.py --offline from repository root, or use the saved output. Label checkpoint use accurately.
 
-Slot 11:47:00–11:52:00 IST (300 seconds).
+SOURCES
 
-Five-minute instructor demonstration. Run starter/agent.py --pause with Gemini only if privately tested beforehand; otherwise add --offline and explicitly disclose the rule-based stand-in. The pause reveals an already-completed trace. Ask the whole room for predictions before each reveal. Students do not make simultaneous live calls. A real model may group or reorder requests.
 
-## Slide 17: Checkpoint 2: change and run
+## Slide 13: What happened in that run?
 
-Slot 11:52:00–12:00:00 IST (480 seconds).
+Slot 11:40:00–11:45:00 IST (300 seconds).
 
-Eight-minute Checkpoint 2. First demonstrate copying starter/agent.py to starter/practice_agent.py and locating QUESTION. Everyone makes only the Rs 80 to Rs 30 change, manually or with an already configured coding assistant. Preserve MENU_ONLY_QUESTION, tools and data. Students run the copy with --offline and record the diff and observed result in their notes. Show the expected no-match result from the front. Use progress signals; helpers, if available, handle individual issues. Blocked students record a proposed edit and predicted output labelled not run, then continue. Optional sharing uses keyboard turns. Early finishers try sold_out or menu_timeout. Sample two explanations. Finish by 12:00.
+SAY
+Give about two minutes for a budget/question variation and three minutes for discussion. Explain what repeats and what finishes. A normal model can choose a different order or not need a tool for a greeting.
 
-## Slide 18: 5-minute break
+DO / SCREEN
+Try Rs 30. Distinguish an empty successful result from an error, without opening the advanced error-handling lab.
 
-Slot 12:00:00–12:05:00 IST (300 seconds).
+ASK
+Could it answer opening hours with only this tool?
 
-Five-minute break, 12:00-12:05. Return at 12:05. Open docs/REVIEW.md and demo 04. Helpers may assist with unresolved setup during the break if available. The presenter does not promise to debug every laptop; blocked students continue with trace/source/paper after the break.
+FALLBACK
+Use the saved agent-budget30.txt result.
 
-## Slide 19: Review the path to the user
+SOURCES
 
-Slot 12:05:00–12:08:00 IST (180 seconds).
 
-Three minutes. Show the one-line budget diff first. Then introduce the review order: requirement, changed lines, input/tool values, failure, final text. A downloaded ZIP is not a Git repository. Use the editor comparison view. Git is optional and not a new installation topic.
+## Slide 14: Add one new ability
 
-## Slide 20: 24 tests passed. The answer was still wrong.
+Slot 11:45:00–11:48:00 IST (180 seconds).
 
-Slot 12:08:00–12:12:00 IST (240 seconds).
+SAY
+Write the full hours function from the lesson. This slide is an outline. We use a mock clock so everyone can reproduce the same case; it is not live campus data.
 
-Four minutes. The original 24 tests passed, but the model message could still contain a fake dish. Only the recommended_dishes list was checked. Ask a student to point to the value actually returned to the user. More passing tests alone do not prove correctness.
+DO / SCREEN
+Add hours to menu_tools.py, update the import and tools list in my_agent.py. Show only these changes.
 
-## Slide 21: Checkpoint 3: review the answer
+ASK
+What should we ask so the program needs both tools?
 
-Slot 12:12:00–12:18:00 IST (360 seconds).
+FALLBACK
 
-Six-minute Checkpoint 3. Open docs/REVIEW.md. Each student first identifies the unchecked return value, writes a correcting idea and one input/output check in their own note. Optional neighbour discussion follows. No Python or account is required. Ask for progress signals and sample two explanations. Demonstrate the worked answer afterward. A rule in AGENTS.md alone does not fix the unsafe return.
 
-## Slide 22: Overconfident AI strikes again
+SOURCES
 
-Slot 12:18:00–12:22:00 IST (240 seconds).
 
-Four minutes. Run deep-dives/demo/04_graph_with_agent.py --offline --inject-mistake fake_dish, then free_text only if time remains. The mistake is injected for teaching. The MODEL PROPOSAL is untrusted debug text; ANSWER uses checked records. Joke payoff: Canteen Bhaiya 1, Overconfident AI 0. Explain the checking idea, not the entire 200-line implementation.
+## Slide 15: Your agent now has two tools
 
-## Slide 23: A check must match the claim
+Slot 11:48:00–11:55:00 IST (420 seconds).
 
-Slot 12:22:00–12:25:00 IST (180 seconds).
+SAY
+Give students seven minutes. In a real model run the tool order may vary; what matters is that menu/hours claims have the relevant results. Scripted rehearsal follows a known sequence.
 
-Three minutes. Ask what a successful empty lookup means, and how that differs from a source failure. A search under Rs 10 does not establish no food under Rs 80. These are extension questions if the room is comfortable. Everyone should at least explain why a failed lookup cannot prove stock.
+DO / SCREEN
+Run my_agent.py again. Expect sandwich and mock closing 16:00. Take two short student explanations from different seating zones.
 
-## Slide 24: LangGraph is Google Maps for your agent
+ASK
+Which part did you add? Which question now works?
 
-Slot 12:25:00–12:28:00 IST (180 seconds).
+FALLBACK
+The completed classroom/agent.py is the two-tool checkpoint.
 
-Three minutes. State is the bag of information, nodes are steps, edges are routes. Students need to read a route, not write LangGraph syntax today. A node can contain ordinary code or a model-driven loop. Ask where the original budget is kept.
+SOURCES
 
-## Slide 25: Our canteen graph
 
-Slot 12:28:00–12:31:00 IST (180 seconds).
+## Slide 16: Five-minute break
 
-Three minutes. Follow one normal route and one failed lookup route. Missing/invalid budget asks and ends this run. A failed menu lookup has two attempts total: one retry, then honest unavailable information. No durable resumption is configured. An explicit graph can contain flexible agents. Ask which decision code should enforce.
+Slot 11:55:00–12:00:00 IST (300 seconds).
 
-## Slide 26: Demo 3: one graph, four routes
+SAY
+Stop for the full five-minute break. Let volunteers help setup during the pause without making it another lecture.
 
-Slot 12:31:00–12:33:00 IST (120 seconds).
+DO / SCREEN
+Resume at 12:00. Bring up the MCP question, not installation steps.
 
-Two minutes. Use saved normal and timeout routes rather than another long live code tour. If behind, describe just one failure route. The full implementation and exercises remain in the take-home kit.
+ASK
 
-## Slide 27: Choose control before choosing a framework
 
-Slot 12:33:00–12:36:00 IST (180 seconds).
+FALLBACK
 
-Three-minute overview only. ReAct is a pattern, LangGraph orchestrates workflows and agents, and CrewAI provides crews and flows. They are not opposites on a deterministic-versus-autonomous scale. One model with two tools often handles lunch plus policy. Multi-agent setup and implementation are optional reference material. Sources: https://docs.langchain.com/oss/python/langgraph/overview and https://docs.crewai.com/en/concepts/crews and https://docs.crewai.com/en/concepts/flows
 
-## Slide 28: Where would YOU give the AI freedom?
+SOURCES
 
-Slot 12:36:00–12:40:00 IST (240 seconds).
 
-Four minutes. Give every student one minute to write where the model may choose and where code should check. Optional neighbour comparison follows; sample two answers from different seating areas. Use menu filtering, campus helper and a paid order as design questions. Extra jargon is not a better design. Finish by 12:40.
+## Slide 17: Can another app use our tools?
 
-## Slide 29: Habits you can use in your next project
+Slot 12:00:00–12:02:30 IST (150 seconds).
 
-Slot 12:40:00–12:44:00 IST (240 seconds).
+SAY
+Motivate the boundary after the function works. A common MCP server exposes tools; it does not provide a model or make the system autonomous.
 
-Four minutes. Connect each habit to the change students just made. Requirements before edits, shared instructions/data with distinct roles, narrow diff review, check the final answer and failures. Do not add RAG, deployment, payments, CI configuration or another provider setup. Ainaa recording moves to optional reference discussion after the workshop.
+DO / SCREEN
 
-## Slide 30: Checkpoint 4: explain your result
 
-Slot 12:44:00–12:50:00 IST (360 seconds).
+ASK
+What would be wasteful about rewriting the menu filter for every framework?
 
-Six-minute Checkpoint 4. Each student saves their own note: one useful instruction and how to check it, the budget diff and observed answer or clearly labelled unexecuted prediction, and one review finding/check. Ask for progress signals and sample explanations from different seating areas, including a beginner and a more experienced student where practical. Volunteers may spot-check within zones if available. No individual presenter approval queue. Use a collection channel only if already arranged by the coordinator. If many are unsure, recap model/tool/code and shorten extra framework discussion. Q&A begins at 12:50.
+FALLBACK
 
-## Slide 31: Questions and your next small project
+
+SOURCES
+https://modelcontextprotocol.io/docs/learn/architecture
+
+## Slide 18: Same data, same tool service
+
+Slot 12:02:30–12:05:30 IST (180 seconds).
+
+SAY
+Each example starts a local stdio instance of the same server program. We are not deploying a central campus server. The functions remain ordinary Python.
+
+DO / SCREEN
+Point to menu_tools.py being imported by mcp_server.py.
+
+ASK
+Does MCP replace the model?
+
+FALLBACK
+
+
+SOURCES
+https://github.com/langchain-ai/langchain-mcp-adapters
+https://docs.crewai.com/en/mcp/overview
+
+## Slide 19: Expose our functions through MCP
+
+Slot 12:05:30–12:08:30 IST (180 seconds).
+
+SAY
+Write mcp_server.py. Explain registration as making the functions discoverable to a client. No need to teach async internals or every transport.
+
+DO / SCREEN
+Create the file in the learner folder. The supplied connection helper launches it through the current Python interpreter; no separate server window is needed.
+
+ASK
+
+
+FALLBACK
+
+
+SOURCES
+https://github.com/modelcontextprotocol/python-sdk
+
+## Slide 20: Discover, call, then connect an agent
+
+Slot 12:08:30–12:11:30 IST (180 seconds).
+
+SAY
+First list tools and call find_food directly through MCP; that does not need a model. Then show classroom/mcp_agent.py. connected_tools owns a local connection and closes it after use.
+
+DO / SCREEN
+From repository root: & $py classroom/mcp_probe.py, then & $py classroom/mcp_agent.py --offline. Remove --offline only for a privately rehearsed live run.
+
+ASK
+Which part moved into another process?
+
+FALLBACK
+
+
+SOURCES
+https://github.com/langchain-ai/langchain-mcp-adapters
+
+## Slide 21: Try one real MCP call
+
+Slot 12:11:30–12:15:00 IST (210 seconds).
+
+SAY
+Give students three and a half minutes for the probe from the lesson where setup permits. The local MCP call is real even without an LLM key.
+
+DO / SCREEN
+Run probe.py in the learner folder, or use classroom/mcp_probe.py from repository root. See the two tool names and sandwich result.
+
+ASK
+What stayed the same?
+
+FALLBACK
+Keep the direct-function agent and watch the instructor MCP call; complete local setup after class.
+
+SOURCES
+
+
+## Slide 22: What if the canteen is closed?
+
+Slot 12:15:00–12:17:00 IST (120 seconds).
+
+SAY
+Use a concrete requirement before introducing graph vocabulary. The earlier agent chooses tools; this outer workflow guarantees an hours step first.
+
+DO / SCREEN
+
+
+ASK
+Would a menu lookup help when the canteen is closed?
+
+FALLBACK
+
+
+SOURCES
+https://docs.langchain.com/oss/python/langgraph/overview
+
+## Slide 23: One branch around an agent
+
+Slot 12:17:00–12:20:00 IST (180 seconds).
+
+SAY
+Read the route together. State holds hours, question and answer. A node is an ordinary function that updates that information. An edge chooses the next step. The open node contains the familiar agent.
+
+DO / SCREEN
+
+
+ASK
+Where does the model choose its own actions here?
+
+FALLBACK
+
+
+SOURCES
+https://docs.langchain.com/oss/python/langgraph/overview
+
+## Slide 24: Wire the small graph
+
+Slot 12:20:00–12:23:00 IST (180 seconds).
+
+SAY
+This is an instructor demonstration. Students can read the three functions and wiring. Do not require the room to type the whole graph.
+
+DO / SCREEN
+Open classroom/graph.py. Point to hours using MCP and agent containing create_agent. Explain choose without adding persistence or approval APIs.
+
+ASK
+
+
+FALLBACK
+
+
+SOURCES
+
+
+## Slide 25: Predict both routes, then run
+
+Slot 12:23:00–12:27:00 IST (240 seconds).
+
+SAY
+Ask for predictions before each run. Both calls use the same actual MCP server. The offline brain is scripted. The closed route does not invoke the lunch agent.
+
+DO / SCREEN
+Use & $py rather than python if using the prepared PowerShell interpreter variable.
+
+ASK
+What would you change to add an approval step later?
+
+FALLBACK
+Use saved_runs/graph-open.txt and graph-closed.txt.
+
+SOURCES
+
+
+## Slide 26: Could two agents share the job?
+
+Slot 12:27:00–12:29:30 IST (150 seconds).
+
+SAY
+Use a group lunch for two vegetarians within Rs 150. Scout gathers options under Rs 75 per person. Planner proposes quantities and a total. This is a deliberately small example of a handoff, not proof that two agents improve lunch search.
+
+DO / SCREEN
+
+
+ASK
+Could one agent already do this?
+
+FALLBACK
+
+
+SOURCES
+https://docs.crewai.com/en/concepts/processes
+
+## Slide 27: A real CrewAI handoff
+
+Slot 12:29:30–12:32:30 IST (180 seconds).
+
+SAY
+This excerpt is an outline; open the runnable file. Show Agent, Task and Crew objects. Only the scout has the menu tool, discovered through the same MCP program. This is sequential, not a manager dynamically choosing workers.
+
+DO / SCREEN
+Open classroom/crew.py. The presenter has already installed requirements-instructor.txt. Keep adapter compatibility details out of the beginner explanation.
+
+ASK
+
+
+FALLBACK
+
+
+SOURCES
+https://docs.crewai.com/en/concepts/processes
+
+## Slide 28: Run the scout and planner
+
+Slot 12:32:30–12:35:30 IST (180 seconds).
+
+SAY
+Read the SCRIPTED label if using offline. The actual CrewAI orchestration, MCP lookup and task context run. A live Gemini run requires separate private rehearsal. Do not call this a benchmark or autonomous AI when scripted.
+
+DO / SCREEN
+Run & $py classroom/crew.py --offline. Point to SCOUT HANDOFF then PLANNER.
+
+ASK
+
+
+FALLBACK
+Use saved_runs/crew.txt; do not install CrewAI during class.
+
+SOURCES
+
+
+## Slide 29: When does a team earn its cost?
+
+Slot 12:35:30–12:37:00 IST (90 seconds).
+
+SAY
+Briefly sketch a coordinator choosing a menu or facilities specialist. That is a different optional pattern from the sequential crew we ran. Keep its implementation for later.
+
+DO / SCREEN
+
+
+ASK
+What would two lunch agents add besides latency?
+
+FALLBACK
+
+
+SOURCES
+
+
+## Slide 30: Choose for the job
+
+Slot 12:37:00–12:40:00 IST (180 seconds).
+
+SAY
+Give three quick scenarios: one menu question, an action needing approval, and research followed by writing. Students choose and give one reason. CrewAI also has flows; LangGraph can host multiple agents.
+
+DO / SCREEN
+
+
+ASK
+Which is the simplest design that meets each requirement?
+
+FALLBACK
+
+
+SOURCES
+https://docs.langchain.com/oss/python/langgraph/overview
+https://docs.crewai.com/en/concepts/flows
+
+## Slide 31: MCP and A2A connect different things
+
+Slot 12:40:00–12:42:00 IST (120 seconds).
+
+SAY
+Spend at most one minute on A2A and the remaining minute recapping categories. ReAct and handoffs are patterns; LangChain, LangGraph, CrewAI are frameworks; MCP/A2A are protocols.
+
+DO / SCREEN
+Skip this teaser if behind; do not introduce protocol messages or another server.
+
+ASK
+
+
+FALLBACK
+
+
+SOURCES
+https://a2a-protocol.org/latest/topics/a2a-and-mcp/
+
+## Slide 32: Give the files clear jobs
+
+Slot 12:42:00–12:44:00 IST (120 seconds).
+
+SAY
+Now that the program works, the folders have a purpose. Show the small project. Mention CLAUDE.md/GEMINI.md as other client conventions. Arbitrary Markdown is not automatically loaded or enforced.
+
+DO / SCREEN
+
+
+ASK
+Where should a price change live? Where should a run command live?
+
+FALLBACK
+
+
+SOURCES
+
+
+## Slide 33: Write a useful project instruction
+
+Slot 12:44:00–12:46:00 IST (120 seconds).
+
+SAY
+Write these together, then ask each student for one useful instruction in a note or supported project file. Explain the difference between guidance and runtime enforcement.
+
+DO / SCREEN
+Use a plain Markdown file or paper if the coding client is unavailable. This is a two-minute introduction; the longer documentation lab is after class.
+
+ASK
+
+
+FALLBACK
+
+
+SOURCES
+
+
+## Slide 34: Keep control of allowed actions
+
+Slot 12:46:00–12:49:00 IST (180 seconds).
+
+SAY
+Use one narrow safety example after the agent makes sense. A model request cannot execute an unregistered function through our loop. Avoid a new long threat-model lecture.
+
+DO / SCREEN
+Open classroom/manual_loop.py and show the allowed lookup and step limit. Run classroom/safety_demo.py for a deliberately injected forbidden request. Label it as injected.
+
+ASK
+Would writing "be safe" in a prompt replace this check?
+
+FALLBACK
+Read the seven-line boundary example and the expected refusal.
+
+SOURCES
+
+
+## Slide 35: Review one small AI-assisted change
+
+Slot 12:49:00–12:50:00 IST (60 seconds).
+
+SAY
+One minute. An AI coding editor is optional. The skill is making a small understandable change and observing its behavior, not accepting a whole generated project. Keep the long fake-wrap review after class.
+
+DO / SCREEN
+
+
+ASK
+
+
+FALLBACK
+
+
+SOURCES
+
+
+## Slide 36: What will you build next?
 
 Slot 12:50:00–13:00:00 IST (600 seconds).
 
-Ten-minute Q&A and close, ending 13:00. Share the GitHub repository URL. It contains the starter, solutions and deeper material. While private, only authorised accounts can access it. Challenge students to extend one small workflow and check a failure. Do not require all five demos as homework. If asked about an untested case, say what remains unknown and how you would check it. No invented demo URLs or product architecture claims.
+SAY
+Reserve the last ten minutes for questions. Invite a short explanation of one tool call or framework choice. Direct students to classroom/README.md and docs/LEARNING_PATH.md. The repository stays private until explicitly released; distribute the ZIP through the organiser.
+
+DO / SCREEN
+Close at 13:00. Do not add a surprise final installation or advanced topic.
+
+ASK
+What can your agent now do that it could not do at the beginning?
+
+FALLBACK
+
+
+SOURCES

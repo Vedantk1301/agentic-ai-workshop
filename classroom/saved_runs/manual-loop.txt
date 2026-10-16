@@ -1,0 +1,12 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/manual_loop.py --offline
+
+BRAIN: SCRIPTED REHEARSAL (not a real AI)
+TOOLS: local functions
+YOU: Find vegetarian lunch under Rs 80 and check opening hours.
+MODEL REQUEST: find_food {'max_price': 80, 'vegetarian': True}
+RESULT find_food: {"status": "ok", "matches": [{"name": "Veg sandwich", "price": 60}]}
+MODEL REQUEST: get_canteen_hours {}
+RESULT get_canteen_hours: {"opens": "09:00", "closes": "16:00", "now": "12:30", "open_now": true, "mock_clock": true}
+ANSWER: Veg sandwich (Rs 60) Canteen open at mock time 12:30; closes 16:00.

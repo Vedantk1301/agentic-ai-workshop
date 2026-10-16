@@ -1,34 +1,39 @@
-# Setup and optional AI Studio access
+# Workshop setup
 
-## Local environment
+Install Python 3.11, one editor and requirements.txt before class using the root README commands. An AI coding editor is optional. Core students need LangChain, the Gemini integration and local MCP support; CrewAI is an optional instructor installation in requirements-instructor.txt.
 
-Install Python 3.11 and one editor. Clone or download/extract the repository. Use the root README commands to create one root .venv and install requirements.txt. Activation is optional; the documented commands call the environment's Python directly.
+Run classroom/check_setup.py, then classroom/mcp_probe.py. The first checks the menu/configured package versions. The second discovers and calls the actual local MCP server without a model. Complete installation while internet is available.
 
-Run starter/agent.py with --offline once before class. Offline examples need no account or key after dependencies are installed. The core exercises can also use a paired laptop or printed trace.
+## Optional real Gemini access
 
-For the large-room session, bring your own laptop where available; sharing is optional. Complete dependency installation before arriving. The live student activities use `--offline`, so an AI Studio key and a coding-assistant login are not prerequisites. The instructor demonstrates API setup from the front; personal live setup can be completed privately before or after class.
+Open [Google AI Studio](https://aistudio.google.com/), sign in with an eligible account and open API Keys. Use an available project/key or create one through the supported interface. Check that its model and free tier are available to your account. AI Studio access is 18+ and region/account restrictions apply. Limited free-tier quota is not a cash credit and is separate from any coding editor allowance. No billing upgrade or Cloud Console provisioning is part of this lesson.
 
-If installation is blocked, open [the saved trace](../deep-dives/demo/saved_runs/02_agent_lunch_and_hours_OFFLINE.txt) and continue [the starter lesson](../starter/README.md). Record predicted results as **not run**. Ask volunteers, if available, for individual setup help; the main session continues at common checkpoints.
-
-## Optional Gemini API setup
-
-1. Sign into [Google AI Studio](https://aistudio.google.com/) with an eligible account. AI Studio access is 18+. Continue offline if access is unavailable.
-2. Open API Keys. New users may already have a default project/key; otherwise create a key through AI Studio's interface.
-3. Check the project's tier and available model/quota. The supplied default is gemini-3.6-flash. Free-tier access is limited and account/model dependent. No billing upgrade or credit purchase is required for core activities.
-4. In starter/, copy .env.example to .env only if you do not already have a configured file. Edit it privately, filling GOOGLE_API_KEY and keeping a supported GEMINI_MODEL. Never paste a real key into Markdown, source code, a shared chat or a projected screen.
-5. From the repository root, run the setup check and then the actual agent. These commands make live API calls when configured:
+From the repository root on Windows:
 
 ```powershell
-.venv\Scripts\python starter/check_setup.py
-.venv\Scripts\python starter/agent.py
+Copy-Item classroom/.env.example classroom/.env
+notepad classroom/.env
+.venv\Scripts\python classroom/check_setup.py --live
 ```
 
-Use .venv/bin/python on macOS/Linux. A text call alone does not establish agent tool-calling compatibility. If access/quota fails, add --offline and continue; a key does not guarantee free calls. The initial repository checks did not exercise live Gemini.
+Put your key only in the private .env file, never in source or a projected terminal command. Set GEMINI_MODEL to a model your account can actually use. The supplied model name is configurable, not a promise of access. Do not reveal .env in a screen share or commit it. Never distribute the instructor key.
 
-Each independent example loads its own local .env: starter/.env, solutions/budget-30/.env or deep-dives/demo/.env. For the workshop, configure only starter/.env if choosing live use. Do not copy keys into the repository history.
+For the new learner project, use your_agent/.env instead. Its copied runtime reads the .env beside it. The completed reference reads classroom/.env. A successful check in one folder does not configure the other automatically.
 
-## Coding assistant
+The safe --live check makes a real agent call and verifies a requested menu tool ran. It prints no key or raw provider error. After it succeeds, rehearse classroom/agent.py without --offline, then mcp_agent.py, both graph routes and crew.py if used live. Check the actual final answer as well as tool use. These calls consume your own quota.
 
-Antigravity is optional; manual edits work. Its sign-in is separate from the Python application's API key. Inspect the loaded project rules for your installed client/version. The supplied AGENTS.md is shared coding guidance, with CLAUDE.md/GEMINI.md entry points for their clients. Ordinary provider API calls do not automatically read these files.
+## Offline rehearsal
 
-Official references: [API keys](https://ai.google.dev/gemini-api/docs/api-key), [free tier](https://ai.google.dev/gemini-api/docs/billing), [access](https://ai.google.dev/gemini-api/docs/available-regions), [Antigravity rules](https://www.antigravity.google/docs/rules).
+Use --offline on the completed examples, or OFFLINE=True in your new-file lesson. The model is a labelled rule script, while the functions, MCP connection and framework orchestration execute. A recording or scripted output supports explanation but is different from your own live model run.
+
+## Instructor machine already prepared
+
+On Vedant's machine the separate tested environment is C:\vedant-side\workshop\.venv-build-first\Scripts\python.exe. Use it by full path for rehearsal; student instructions stay portable. The earlier demo/.venv remains the previous environment. Do not assume it contains MCP or CrewAI.
+
+## MCP connection
+
+The client launches the local mcp_server.py through sys.executable using an absolute path. No second terminal is required. Keep stdout free for MCP protocol messages; log debugging to stderr. A local process instance belongs to each client; this is the same server code and dataset rather than a centrally deployed campus service.
+
+## Sources
+
+[Google API keys](https://ai.google.dev/gemini-api/docs/api-key), [free-tier information](https://ai.google.dev/gemini-api/docs/billing), [access requirements](https://ai.google.dev/gemini-api/docs/available-regions), [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk), [LangChain MCP adapters](https://github.com/langchain-ai/langchain-mcp-adapters) and [CrewAI MCP](https://docs.crewai.com/en/mcp/overview).

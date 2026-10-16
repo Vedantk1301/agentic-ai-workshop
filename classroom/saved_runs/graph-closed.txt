@@ -1,0 +1,8 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/graph.py --offline --at 17:00
+
+BRAIN: SCRIPTED REHEARSAL (not a real AI)
+TOOLS: MCP / stdio
+ROUTE: hours -> closed
+ANSWER: Canteen closed at mock time 17:00. No menu lookup needed.

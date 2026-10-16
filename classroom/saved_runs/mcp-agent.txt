@@ -1,0 +1,12 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/mcp_agent.py --offline
+
+BRAIN: SCRIPTED REHEARSAL (not a real AI)
+TOOLS: MCP / stdio / local server process
+YOU: Find vegetarian lunch under Rs 80 and check opening hours.
+MODEL REQUEST: find_food {'max_price': 80, 'vegetarian': True}
+RESULT find_food: [{'type': 'text', 'text': '{\n  "status": "ok",\n  "matches": [\n    {\n      "name": "Veg sandwich",\n      "price": 60\n    }\n  ]\n}', 'id': 'lc_19508d2b-6575-47bf-a99a-747c6d7c9846'}]
+MODEL REQUEST: get_canteen_hours {}
+RESULT get_canteen_hours: [{'type': 'text', 'text': '{\n  "opens": "09:00",\n  "closes": "16:00",\n  "now": "12:30",\n  "open_now": true,\n  "mock_clock": true\n}', 'id': 'lc_3b66ee72-4e9d-46e1-99aa-8c7217afe9ee'}]
+ANSWER: Veg sandwich (Rs 60) Canteen open at mock time 12:30; closes 16:00.

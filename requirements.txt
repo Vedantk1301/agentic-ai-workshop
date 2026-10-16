@@ -1,4 +1,4 @@
-# Tested together on Python 3.11, 15 Oct 2026. Keep these pins for the workshop.
+# Tested together on Python 3.11, 16 Oct 2026. Keep these pins for the workshop.
 langchain==1.4.6
 langchain-core==1.6.10
 langgraph==1.2.15
@@ -6,3 +6,5 @@ langchain-google-genai==4.4.2
 google-genai==2.30.1
 python-dotenv==1.2.4
 pytest==9.1.1
+mcp==1.30.0
+langchain-mcp-adapters==0.3.2

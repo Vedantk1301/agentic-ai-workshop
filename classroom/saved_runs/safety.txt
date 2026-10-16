@@ -1,0 +1,6 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/safety_demo.py
+
+INJECTED REQUEST for teaching; no real AI, no deletion tool.
+REFUSED BEFORE EXECUTION: Tool delete_everything is not allowed

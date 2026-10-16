@@ -1,0 +1,8 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/graph.py --offline
+
+BRAIN: SCRIPTED REHEARSAL (not a real AI)
+TOOLS: MCP / stdio
+ROUTE: hours -> agent
+ANSWER: Veg sandwich (Rs 60)

@@ -1,0 +1,290 @@
+[
+  {
+    "slide": 1,
+    "title": "Build your first AI agent",
+    "start": "11:00:00",
+    "end": "11:01:30",
+    "seconds": 90,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 2,
+    "title": "You have Rs 80 and ten minutes",
+    "start": "11:01:30",
+    "end": "11:03:30",
+    "seconds": 120,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 3,
+    "title": "What makes this an agent?",
+    "start": "11:03:30",
+    "end": "11:05:30",
+    "seconds": 120,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 4,
+    "title": "Act out the tool call",
+    "start": "11:05:30",
+    "end": "11:08:30",
+    "seconds": 180,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 5,
+    "title": "Give each part one job",
+    "start": "11:08:30",
+    "end": "11:10:00",
+    "seconds": 90,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 6,
+    "title": "Our entire canteen menu",
+    "start": "11:10:00",
+    "end": "11:13:00",
+    "seconds": 180,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 7,
+    "title": "A tool starts as a function",
+    "start": "11:13:00",
+    "end": "11:17:00",
+    "seconds": 240,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 8,
+    "title": "Your turn: run the tool",
+    "start": "11:17:00",
+    "end": "11:20:00",
+    "seconds": 180,
+    "mode": "STUDENT ACTIVITY"
+  },
+  {
+    "slide": 9,
+    "title": "Let the model request the function",
+    "start": "11:20:00",
+    "end": "11:23:00",
+    "seconds": 180,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 10,
+    "title": "The ReAct-style loop",
+    "start": "11:23:00",
+    "end": "11:26:00",
+    "seconds": 180,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 11,
+    "title": "Build with LangChain",
+    "start": "11:26:00",
+    "end": "11:30:00",
+    "seconds": 240,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 12,
+    "title": "Build and run your first agent",
+    "start": "11:30:00",
+    "end": "11:40:00",
+    "seconds": 600,
+    "mode": "STUDENT ACTIVITY"
+  },
+  {
+    "slide": 13,
+    "title": "What happened in that run?",
+    "start": "11:40:00",
+    "end": "11:45:00",
+    "seconds": 300,
+    "mode": "EDITOR + DISCUSSION"
+  },
+  {
+    "slide": 14,
+    "title": "Add one new ability",
+    "start": "11:45:00",
+    "end": "11:48:00",
+    "seconds": 180,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 15,
+    "title": "Your agent now has two tools",
+    "start": "11:48:00",
+    "end": "11:55:00",
+    "seconds": 420,
+    "mode": "STUDENT ACTIVITY"
+  },
+  {
+    "slide": 16,
+    "title": "Five-minute break",
+    "start": "11:55:00",
+    "end": "12:00:00",
+    "seconds": 300,
+    "mode": "BREAK"
+  },
+  {
+    "slide": 17,
+    "title": "Can another app use our tools?",
+    "start": "12:00:00",
+    "end": "12:02:30",
+    "seconds": 150,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 18,
+    "title": "Same data, same tool service",
+    "start": "12:02:30",
+    "end": "12:05:30",
+    "seconds": 180,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 19,
+    "title": "Expose our functions through MCP",
+    "start": "12:05:30",
+    "end": "12:08:30",
+    "seconds": 180,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 20,
+    "title": "Discover, call, then connect an agent",
+    "start": "12:08:30",
+    "end": "12:11:30",
+    "seconds": 180,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 21,
+    "title": "Try one real MCP call",
+    "start": "12:11:30",
+    "end": "12:15:00",
+    "seconds": 210,
+    "mode": "STUDENT ACTIVITY"
+  },
+  {
+    "slide": 22,
+    "title": "What if the canteen is closed?",
+    "start": "12:15:00",
+    "end": "12:17:00",
+    "seconds": 120,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 23,
+    "title": "One branch around an agent",
+    "start": "12:17:00",
+    "end": "12:20:00",
+    "seconds": 180,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 24,
+    "title": "Wire the small graph",
+    "start": "12:20:00",
+    "end": "12:23:00",
+    "seconds": 180,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 25,
+    "title": "Predict both routes, then run",
+    "start": "12:23:00",
+    "end": "12:27:00",
+    "seconds": 240,
+    "mode": "EDITOR + DISCUSSION"
+  },
+  {
+    "slide": 26,
+    "title": "Could two agents share the job?",
+    "start": "12:27:00",
+    "end": "12:29:30",
+    "seconds": 150,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 27,
+    "title": "A real CrewAI handoff",
+    "start": "12:29:30",
+    "end": "12:32:30",
+    "seconds": 180,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 28,
+    "title": "Run the scout and planner",
+    "start": "12:32:30",
+    "end": "12:35:30",
+    "seconds": 180,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 29,
+    "title": "When does a team earn its cost?",
+    "start": "12:35:30",
+    "end": "12:37:00",
+    "seconds": 90,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 30,
+    "title": "Choose for the job",
+    "start": "12:37:00",
+    "end": "12:40:00",
+    "seconds": 180,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 31,
+    "title": "MCP and A2A connect different things",
+    "start": "12:40:00",
+    "end": "12:42:00",
+    "seconds": 120,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 32,
+    "title": "Give the files clear jobs",
+    "start": "12:42:00",
+    "end": "12:44:00",
+    "seconds": 120,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 33,
+    "title": "Write a useful project instruction",
+    "start": "12:44:00",
+    "end": "12:46:00",
+    "seconds": 120,
+    "mode": "STUDENT ACTIVITY"
+  },
+  {
+    "slide": 34,
+    "title": "Keep control of allowed actions",
+    "start": "12:46:00",
+    "end": "12:49:00",
+    "seconds": 180,
+    "mode": "EDITOR"
+  },
+  {
+    "slide": 35,
+    "title": "Review one small AI-assisted change",
+    "start": "12:49:00",
+    "end": "12:50:00",
+    "seconds": 60,
+    "mode": "SLIDES"
+  },
+  {
+    "slide": 36,
+    "title": "What will you build next?",
+    "start": "12:50:00",
+    "end": "13:00:00",
+    "seconds": 600,
+    "mode": "Q&A"
+  }
+]

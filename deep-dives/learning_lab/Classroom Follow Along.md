@@ -1,5 +1,8 @@
 # Classroom follow-along
 
+> Earlier edition, optional reference. For the current build-first workshop start with classroom/README.md from the repository root.
+
+
 Work with a partner. You will write one useful instruction, change one request in a prepared program, and review an unsafe answer. The longer AI Coding Lab is optional practice after class.
 
 ## Before class: get one local run working

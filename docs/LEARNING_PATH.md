@@ -1,33 +1,25 @@
-# Your learning path
+# Continue after your first agent
 
-## During the workshop
+First finish classroom/README.md: one ordinary function, one LangChain agent, one added tool, then a local MCP call. Explain who requests, executes and returns the result before adding more concepts.
 
-Complete starter/README.md. Show one useful instruction, one budget change plus its output, and one review finding. You need to understand model/tool/code responsibilities before adding more framework vocabulary.
+## Explore one pattern at a time
 
-Work individually where devices permit, with optional sharing. The five checkpoints in the starter are the live path. Keep your own notes and distinguish observed outputs from predictions if using the setup fallback. The instructor samples explanations from the room; individual laptop approval is not required to proceed.
+| Question | File |
+| --- | --- |
+| What is inside the agent loop? | classroom/manual_loop.py |
+| How do the same tools cross a process boundary? | classroom/mcp_server.py, mcp_connection.py and mcp_agent.py |
+| How can code control a route around an agent? | classroom/graph.py |
+| What passes between two real agent roles? | classroom/crew.py |
+| How does a manager choose workers? | [Orchestrator and A2A notes](PATTERNS.md) |
 
-## Afterward: explain the finished change
+ReAct is a pattern. LangChain, LangGraph and CrewAI are frameworks. MCP and A2A are protocols. A graph can contain a ReAct-style agent; a crew can be part of a controlled flow. Framework choice alone does not determine autonomy.
 
-Compare solutions/ with your work. Explain the one changed default budget and why stock/hours are unchanged. Read the worked review answer and run the checked graph with a deliberately invented message.
+## Add one useful capability
 
-## Then: study one design at a time
+Try a canteen-location tool, a clearer closed response, or a one-agent group lunch proposal. State the goal, change one small piece, inspect it and run a normal and relevant boundary case. Write the useful run command and result in your README. Choose the simplest design that meets your need.
 
-| Step | Example | Question to answer |
-| --- | --- | --- |
-| 1 | [Tools and fixed workflow](../deep-dives/demo/01_tools_and_fixed_workflow.py) | Which decisions does ordinary code make? |
-| 2 | [Agent loop](../deep-dives/demo/02_react_agent.py) | Which allowed tool does the model request next? |
-| 3 | [Explicit graph](../deep-dives/demo/03_langgraph_flow.py) | Where are state, routes, clarification and retry limits? |
-| 4 | [Agent inside a graph](../deep-dives/demo/04_graph_with_agent.py) | How are proposals checked before reaching the user? |
-| 5 | [Role-team simulation](../deep-dives/demo/05_team_of_roles.py) | Does splitting responsibilities help this problem? |
+## Optional advanced references
 
-ReAct is a pattern, LangGraph orchestrates workflows and agents, and CrewAI provides crews and flows. Framework choice and degree of autonomy are separate decisions. Demo 05 is a plain-Python role simulation; its output is not a live multi-agent benchmark.
+The older starter/, solutions/ and deep-dives/ examples teach answer verification, error versus no-match handling, bounded loops and more elaborate workflows. They use the previous lesson layout and are not the current classroom starting point. Demo 05 in deep-dives is a role simulation; classroom/crew.py is the actual CrewAI example.
 
-## Build one extension
-
-Try the [three exercises](../deep-dives/demo/exercises/README.md). Add a tool first; verify an incorrect output next; then implement the closed-canteen shortcut. Write requirements, inspect the diff and test a boundary/failure case. The worked graph solution is checked by a test that executes its documented code.
-
-## Go deeper when you need it
-
-The [study guide](../deep-dives/guides/Agentic%20AI%20Study%20Guide.md) covers programming/API foundations, models, context, tools, workflows, MCP, retrieval, memory, evaluation and operations. Use the [practice questions](../deep-dives/guides/Practice%20and%20Answer%20Key.md) before reading answers. These are optional learning resources, not a claim you should master every topic in two hours.
-
-For a real project, choose a clear data source, verify freshness and permissions, trace failures, measure behavior on realistic requests, and add human approval where actions require it. Start with the simplest architecture that meets the need.
+Use the longer study guides for APIs, retrieval, memory, evaluation and operations after the workshop. A first-year student is not expected to master those in the two-hour session.

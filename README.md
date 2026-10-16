@@ -1,71 +1,73 @@
-# Agentic AI in Practice
+# Build your first AI agent
 
-Build, review and control a small Campus Canteen Assistant. Prepared for Vedant's VIT Mumbai workshop, 17 October 2026.
+A guided VIT Mumbai workshop for beginners, 17 October 2026, 11:00-13:00 IST. Build a small canteen agent, add a tool, reuse the tools through MCP, then compare LangChain, LangGraph and CrewAI.
 
-**Start with [the starter lesson](starter/README.md).** You will write useful project instructions, change one request, and review an unsafe answer. The advanced folders are optional after class.
+**Start with classroom/README.md.** Students write their application in a fresh folder; completed classroom files are checkpoints and instructor examples. The older starter/ and deep-dives/ material is optional advanced reference.
 
-## How the room will work
+## Install before class
 
-The session is planned for a possible 100-200 students. Work on your own laptop where available; sharing is optional. Everyone writes their own notes and explains their result. The instructor demonstrates one step, gives you time to do it, then checks progress from the front.
+Install Python 3.11 and one editor. An AI coding editor is optional. Clone this repository or extract the supplied ZIP. While private, a GitHub link requires authorised access; the organiser can distribute the ZIP directly.
 
-Complete installation before class. The live student exercises use `--offline`; the instructor may separately demonstrate a tested live model. At each checkpoint show **1 finger: ready, 2: need help, 3: using a saved trace**. Helpers, if available, handle individual setup issues. If blocked, continue with the supplied menu, source and saved trace, recording predictions as unexecuted rather than claiming a successful run.
-
-Instructors and volunteers: read [the room guide](docs/ROOM_GUIDE.md). Students: follow only the starter during the live session.
-
-## Get the project
-
-Clone this repository, or use GitHub's **Code > Download ZIP**, extract it and open the extracted folder. Git knowledge is optional. While the repository is private, access is limited to authorised GitHub accounts.
-
-```sh
-git clone https://github.com/Vedantk1301/agentic-ai-workshop.git
-cd agentic-ai-workshop
-```
-
-Install Python 3.11 and one editor first. Antigravity is optional. From the repository root on Windows:
+Windows PowerShell, repository root:
 
 ```powershell
 py -3.11 -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python starter/agent.py --offline
+.venv\Scripts\python classroom/check_setup.py
 ```
+
+If the py launcher is unavailable, use python -m venv .venv after checking python --version is 3.11. For an existing valid workshop interpreter, use its full path rather than reinstalling Python.
 
 macOS/Linux:
 
 ```sh
 python3.11 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python starter/agent.py --offline
+.venv/bin/python classroom/check_setup.py
 ```
 
-The default request finds vegetarian lunch under Rs 80. Expect the Rs 60 sandwich and mock closing time 16:00. The offline model is a clearly labelled rule-based stand-in; the real agent/tool plumbing still executes. Dependencies need internet for the initial installation.
+Follow [the new-file lesson](classroom/README.md). start_here.py creates your_agent/ with data and setup/fallback support, without a finished agent. It refuses to overwrite a nonempty folder.
 
-## Choose your next step
+## Run the checkpoints
 
-| Stage | Open | Finish when you can |
-| --- | --- | --- |
-| In class | [Starter](starter/README.md) | Explain an instruction, one changed line and one review finding |
-| Compare afterward | [Solutions](solutions/README.md) | Explain why the completed exercise gives its result |
-| Study the systems | [Deep dives](deep-dives/README.md) | Trace tools, agents, graph routes and a simulated team |
-| Improve your method | [Learning path](docs/LEARNING_PATH.md), [AI coding](docs/AI_CODING.md), [review](docs/REVIEW.md) | Specify, change, review, verify and document a small feature |
-| Present/revise | [Classroom slides](slides/Agentic%20AI%20in%20Practice.pdf) | Follow the single canteen story, with [speaker notes](slides/Speaker%20Script.md) |
+Windows, repository root:
 
-You do not need to read or build every example during the workshop.
+```powershell
+.venv\Scripts\python classroom/menu_tools.py
+.venv\Scripts\python classroom/agent.py --offline
+.venv\Scripts\python classroom/mcp_probe.py
+.venv\Scripts\python classroom/mcp_agent.py --offline
+.venv\Scripts\python classroom/graph.py --offline --at 17:00
+```
 
-## Optional live Gemini
+Use .venv/bin/python on macOS/Linux. --offline means a labelled rule script supplies model decisions while real framework/tool code runs. MCP probe has no model at all. Remove --offline only after privately configuring and testing live Gemini; see [setup](docs/SETUP.md). Free-tier access and quota vary.
 
-Follow [setup and AI Studio guidance](docs/SETUP.md). Live calls use your own eligible account and key, configured privately in starter/.env. No paid plan or Cloud Console provisioning is needed for the core offline activities. Available free-tier models and quota depend on the account. A coding-assistant login and the Python application's API key are separate setup steps.
+The presenter installs requirements-instructor.txt for the real CrewAI example:
 
-The records are fictional. The parser is intentionally small. There are no orders, payments or production access controls. Offline tests do not establish live model compatibility, latency or quota.
+```powershell
+.venv\Scripts\python -m pip install -r requirements-instructor.txt
+.venv\Scripts\python classroom/crew.py --offline
+```
 
-## Check your environment
+CrewAI is optional for students and has a heavier dependency set. The demo is an actual sequential crew; its offline model is scripted. A sequential handoff is different from a manager selecting workers and does not implement A2A automatically.
 
-From the repository root:
+## Where to go
+
+| Material | Purpose |
+| --- | --- |
+| [Classroom lesson](classroom/README.md) | Write a tool, build one agent, add hours and call MCP |
+| [Slides](slides/Agentic%20AI%20in%20Practice.pdf) | Short explanations and activity prompts |
+| [Speaker script](slides/Speaker%20Script.md) and [run sheet](slides/Live%20Run%20Sheet.md) | Exact slide/editor switches and commands |
+| [Curriculum](slides/Curriculum.md) | Two-hour teaching sequence and scope |
+| [Setup](docs/SETUP.md), [room guide](docs/ROOM_GUIDE.md) | Installation, access and large-room support |
+| [Learning path](docs/LEARNING_PATH.md) | Manual loop, patterns, project habits and advanced material |
+| classroom/saved_runs/ | Actual captured offline runs, labelled with their mode |
+
+## Verify the kit
 
 ```powershell
 .venv\Scripts\python tools/verify_workshop.py
-.venv\Scripts\python -m pytest deep-dives/demo/tests -q -p no:cacheprovider
+.venv\Scripts\python -m pytest classroom/tests deep-dives/demo/tests -q -p no:cacheprovider
 ```
 
-Use .venv/bin/python on macOS/Linux. The first command runs five offline examples, including the worked budget change and a rejected invented message. The second runs the full behavioral suite. The GitHub workflow performs the same checks without API credentials.
-
-Read [troubleshooting](docs/TROUBLESHOOTING.md) if setup fails. Start with the outcome and changed lines before asking an AI to fix the entire project.
+The full classroom suite includes CrewAI; install instructor requirements first. Use -k "not crew" for the core suite. Local tools and MCP work without keys. Offline checks do not establish live model availability or quota. The records and clock are fictional; no orders or payments occur.

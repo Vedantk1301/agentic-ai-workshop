@@ -7,7 +7,7 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -16,7 +16,10 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: requirements.txt
-      - run: python -m pip install -r requirements.txt
+          cache-dependency-path: |
+            requirements.txt
+            requirements-instructor.txt
+      - run: python -m pip install -r requirements-instructor.txt
+      - run: python -m pip check
       - run: python tools/verify_workshop.py
-      - run: python -m pytest deep-dives/demo/tests -q -p no:cacheprovider
+      - run: python -m pytest classroom/tests deep-dives/demo/tests -q -p no:cacheprovider

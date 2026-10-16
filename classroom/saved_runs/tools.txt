@@ -1,0 +1,6 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/menu_tools.py
+
+{'status': 'ok', 'matches': [{'name': 'Veg sandwich', 'price': 60}]}
+{'opens': '09:00', 'closes': '16:00', 'now': '12:30', 'open_now': True, 'mock_clock': True}

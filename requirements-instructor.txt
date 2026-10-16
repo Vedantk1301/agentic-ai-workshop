@@ -1,0 +1,3 @@
+# The classroom core stays smaller; only the presenter needs this team demo.
+-r requirements.txt
+crewai==1.6.1

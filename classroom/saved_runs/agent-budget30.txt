@@ -1,0 +1,12 @@
+# Actual captured local run
+# Mode: scripted brain or no model; not a live Gemini run.
+# Command: python classroom/agent.py --offline --question Find vegetarian lunch under Rs 30 and check hours.
+
+BRAIN: SCRIPTED REHEARSAL (not a real AI)
+TOOLS: local functions
+YOU: Find vegetarian lunch under Rs 30 and check hours.
+MODEL REQUEST: find_food {'max_price': 30, 'vegetarian': True}
+RESULT find_food: {"status": "ok", "matches": []}
+MODEL REQUEST: get_canteen_hours {}
+RESULT get_canteen_hours: {"opens": "09:00", "closes": "16:00", "now": "12:30", "open_now": true, "mock_clock": true}
+ANSWER: No matching available food under Rs 30. Canteen open at mock time 12:30; closes 16:00.

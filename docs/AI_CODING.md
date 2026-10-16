@@ -1,27 +1,21 @@
-# A small AI coding workflow
+# Use a coding assistant for one understandable change
 
-## Specify
+Build the first tool and agent using classroom/README.md. A coding assistant is optional. Give it a small goal after you understand the starting code, for example:
 
-Write the user, outcome, scope and three acceptance examples: normal, boundary and failure. For the starter budget task, the menu stays unchanged and only the default request changes.
+```text
+Read menu_tools.py and my_agent.py. Explain how a tool result reaches the model.
+Then propose a canteen-location tool. Show the change before applying it.
+Keep menu data and API configuration unchanged. Report what you ran.
+```
 
-## Provide useful context
+Review the new function, its registration and its output. Run the tool directly, then ask the agent a question that needs it. A confident explanation is not evidence that code ran. Ask for the actual command and result.
 
-README explains setup. docs/PROJECT.md explains intended behavior. AGENTS.md guides the coding assistant. data/menu.json holds records. Python enforces behavior. Tests check selected cases. Give each file a purpose and link to detail rather than duplicate changing facts everywhere.
+## Small project documentation
 
-Use Markdown headings, lists, links and fenced code. Use JSON strings, numbers and booleans consistently. Keep secrets in local environment configuration, outside Git. Treat retrieved text as data rather than an authorised instruction.
+README.md: what the project does and how to run it. data/menu.json: fictional records. Python: behavior. A supported coding instruction file: clear project rules. Use a heading, bullets and a run command; keep secrets out.
 
-## Request one change
+AGENTS.md, CLAUDE.md and GEMINI.md are client conventions with differing support. Check what your chosen client actually reads. Markdown instructions guide an assistant; runtime allowlists, validation and loop limits enforce boundaries.
 
-Identify the relevant files and desired behavior. Ask the assistant to inspect first, explain its smallest proposed change, preserve unrelated behavior, show the diff and report exact checks. Ask about a line you cannot explain. Use the focused starter prompt rather than requesting an entire new application.
+## A short review
 
-## Review
-
-Read changed and removed lines. Follow input through validation and tool execution to the exact returned answer. Check that tests or data were not changed just to manufacture a pass. A second AI review is useful when it provides reproducible findings; agreement alone does not prove correctness.
-
-## Verify and document
-
-Run behavior checks. For a bug, show that the regression fails before the fix and passes afterward. Check no matches, unavailable information and stopping conditions. Record what changed, why, what ran, what passed and what remains untested.
-
-Keep commits focused when using Git. Open untracked files as well as the diff. Build confidence through small changes you can explain.
-
-For longer practice, use [the full guided lab](../deep-dives/learning_lab/AI%20Coding%20Lab.md) and [the study guide](../deep-dives/guides/Agentic%20AI%20Study%20Guide.md).
+Explain what changed and why; check the diff for unrelated edits; run the relevant behavior; verify the final user-visible result against actual tool facts. The longer docs/REVIEW.md exercise is optional after the first build.

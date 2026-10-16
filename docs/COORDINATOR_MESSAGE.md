@@ -1,18 +1,19 @@
-# Coordinator message
+# Coordinator session outline
 
-Hi Sir, I am planning the session as a guided hands-on workshop suitable for a possible 100-200 first- to fourth-year IT/CS students. Students will use one campus-canteen example to write useful AI instructions, make and run a small code change, review an unsafe answer and understand a simple agent/graph. They should bring their own laptop and charger where possible; sharing is optional. Please circulate the supplied Agentic AI GitHub Kit.zip and ask students to complete the root README setup before class. Python 3.11 and one editor are sufficient; Antigravity is optional. The live student activities use the offline mode, so an AI Studio key or paid account is not required. I will demonstrate the optional API setup from the front. Could we confirm expected attendance, laptop availability, Wi-Fi, power and projector readability, and arrange 4-6 technical student volunteers if possible? Volunteers would help within seating zones while I lead the room through common checkpoints.
+## Copy and paste paragraph
 
-## Student preparation message
+Hi Sir, I am planning a beginner-friendly, guided workshop on building a small AI agent, suitable for first- to fourth-year IT/CS students with no prior agentic AI knowledge. We will start with what an agent is and build a simple campus-canteen assistant step by step, using LangChain to explain how the model chooses tools and uses their results. We will then expose the same tools through MCP and use short LangGraph and CrewAI demonstrations to explain a controlled workflow, agent collaboration and when each approach is useful. Students will build and extend one core agent; the framework comparisons will use the same familiar data. We will finish with a few practical project-organisation and safety habits. Please ask students to bring a laptop and charger where possible, with Python 3.11 and one editor installed; sharing is also fine. An AI coding editor is optional. I will provide the tested setup instructions and student package before the session. Could we confirm attendance, Wi-Fi, power, projector readability and 4-6 technical student volunteers if possible?
 
-Bring your own laptop and charger where available; sharing is fine. Install Python 3.11 and one editor. Antigravity is optional. Extract Agentic AI GitHub Kit.zip, open the extracted repository root and follow README.md to install dependencies. Run starter/agent.py with --offline using the documented command. Expect the vegetarian sandwich at Rs 60 and closing time 16:00. Open starter/README.md for class activities. Personal live API setup is optional outside the activity. Keep real keys private. If setup is blocked, the supplied menu, source and saved trace let you complete the written tasks; record predictions as not run.
+## Student setup message
 
-## Support and delivery
+Please bring a laptop and charger where possible, with Python 3.11 and one editor installed. Sharing is fine and an AI coding editor is optional. Extract Agentic AI GitHub Kit.zip and follow its root README to create .venv, install requirements.txt and run classroom/check_setup.py. Then open classroom/README.md and follow Step 0 once to create the learner folder before building. CrewAI is an optional instructor installation. Install dependencies before class while internet is available.
 
-- Confirm headcount and available laptops. Individual work is the default, with optional sharing and individual notes.
-- Request 4-6 technical volunteers and assign seating zones after they have tried the starter. Staffing is not yet confirmed.
-- Use five common checkpoints. Students signal 1 finger ready, 2 need help, 3 using saved trace. Helpers handle individual issues; the instructor addresses common problems from the front.
-- If no volunteers are available, individual installation support cannot be guaranteed during the session. Students continue using the source, menu, saved trace or optional sharing. No queue for instructor laptop approval.
-- Please provide Wi-Fi, power, a readable projector and a way to distribute the ZIP before class. The GitHub repository is private until separately changed; the private link does not grant student access by itself.
-- The session remains Saturday 17 October, 11:00-13:00 IST, including a five-minute break and ten-minute closing Q&A. Full cloud provisioning and multi-agent implementation remain optional follow-up.
+Live model access needs eligible personal access, a private key and available quota; follow docs/SETUP.md if using it. Local functions and MCP calls need no model key. Labelled scripted rehearsal and checkpoints are provided for account/network problems. Never share keys. The coding editor account and application API access are separate.
 
-This is a copy-paste draft. Nothing has been sent automatically.
+Keep the repository private until Vedant explicitly changes that decision. Distribute the tested ZIP through the chosen college channel; a private URL alone does not grant access.
+
+## Room plan
+
+Use individual laptops where available, with optional sharing and keyboard turns. The presenter explains from the front; volunteers help seating zones with repeated setup issues. Use a few common build checkpoints instead of inspecting 100-200 screens. Have checkpoint source files and recorded live outputs for recovery, labelled accurately. If support or connectivity is limited, protect the first agent build and shorten later framework demonstrations.
+
+Saturday 17 October 2026, 11:00-13:00 IST, includes a five-minute break and ten-minute Q&A. This is a message draft; nothing has been sent automatically.

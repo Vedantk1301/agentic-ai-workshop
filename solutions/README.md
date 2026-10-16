@@ -1,5 +1,8 @@
 # Worked solutions
 
+> Earlier edition, optional reference. For the current build-first workshop start with classroom/README.md from the repository root.
+
+
 Try the starter first. Compare changed lines and explain the result rather than copying a whole folder without reading it.
 
 | Exercise | Worked answer | What to understand |

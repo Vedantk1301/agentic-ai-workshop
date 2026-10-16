@@ -2,7 +2,7 @@
 
 ## Purpose and map
 
-Teach beginners to specify, review and check a fictional canteen assistant. Read README.md and docs/LEARNING_PATH.md. starter/ is the classroom project; solutions/ holds worked answers; deep-dives/ holds optional implementations and guides; docs/ explains the method.
+Teach beginners to build a small canteen agent in a new file, add a tool, reuse it through MCP and compare LangChain, LangGraph and CrewAI. Read README.md and classroom/README.md. classroom/ is the current lesson and checkpoints; starter/, solutions/ and deep-dives/ are optional references from the previous edition; docs/ explains setup and follow-up.
 
 ## Working rules
 
@@ -22,7 +22,7 @@ From the repository root on Windows:
 
 ```powershell
 .venv\Scripts\python tools/verify_workshop.py
-.venv\Scripts\python -m pytest deep-dives/demo/tests -q -p no:cacheprovider
+.venv\Scripts\python -m pytest classroom/tests deep-dives/demo/tests -q -p no:cacheprovider
 ```
 
-Use .venv/bin/python on macOS/Linux. Report actual commands/results and untested live behavior. Add a behavior regression for a bug; keep docs consistent with commands and paths.
+Install requirements-instructor.txt for the CrewAI integration check, or select -k "not crew" for the core suite. Use .venv/bin/python on macOS/Linux. Report actual commands/results and untested live behavior. Add a behavior regression for a bug; keep docs consistent with commands and paths.

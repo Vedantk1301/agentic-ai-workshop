@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Veg sandwich",
+    "price": 60,
+    "vegetarian": true,
+    "available": true
+  },
+  {
+    "name": "Poha",
+    "price": 35,
+    "vegetarian": true,
+    "available": false
+  },
+  {
+    "name": "Chicken roll",
+    "price": 75,
+    "vegetarian": false,
+    "available": true
+  },
+  {
+    "name": "Dosa",
+    "price": 90,
+    "vegetarian": true,
+    "available": true
+  }
+]
