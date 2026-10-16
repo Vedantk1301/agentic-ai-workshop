@@ -4,9 +4,18 @@ Start here during class. You will create your own menu function and agent, then 
 
 ## 0. Prepare before class
 
-Install Python 3.11 or newer and an editor. From the downloaded repository root, follow the root README to create .venv and install requirements.txt. An AI coding editor is optional. The core dependency file includes local MCP support; CrewAI is an optional instructor installation.
+Install Python 3.11 or newer and an editor. An AI coding editor is optional. The core dependency file includes local MCP support; CrewAI is an optional instructor installation.
 
-Windows PowerShell, from the repository root:
+**First, once:** create the `.venv` environment and install the packages. Skip this only if you already did it from the root README. Windows PowerShell, from the repository root:
+
+```powershell
+py -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+```
+
+On macOS/Linux use `python3 -m venv .venv` and `.venv/bin/python -m pip install -r requirements.txt`. If you later see "Cannot find path ...\.venv\Scripts\python.exe", this step was skipped.
+
+**Then** set up your learner folder. Windows PowerShell, from the repository root:
 
 ```powershell
 $py = (Resolve-Path .venv\Scripts\python.exe).Path
