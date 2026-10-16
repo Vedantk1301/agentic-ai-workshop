@@ -20,15 +20,15 @@ Students with no agent experience leave able to:
 
 | Time | Min | Slides | Block |
 | --- | ---: | --- | --- |
-| 13:30-13:34 | 4 | 1-3 | Who is speaking, and the ₹80 lunch problem. |
-| 13:34-13:51 | 17 | 4-12 | What agentic AI is, the industry in 2026, and two real products. |
-| 13:51-14:19 | 28 | 13-21 | Live build in your_agent/: function, tool, agent, second tool. |
-| 14:19-14:23 | 4 | 22-23 | MCP: write a tool once, plug it into any agent. |
-| 14:23-14:41 | 18 | 24-30 | When to use what: grounding, control and organisation, with a group design activity. |
-| 14:41-14:45 | 4 | 31-32 | Reliability, cost and failure, and how code keeps control. |
-| 14:45-15:00 | 15 | 33-36 | Agents that learn on the job, the 2027 direction, and what to learn next. |
+| 13:30-13:37 | 7 | 1-3 | Who is speaking, and the ₹80 lunch problem. |
+| 13:37-13:53 | 16 | 4-11 | What agentic AI is, the industry in 2026, and two real products. |
+| 13:53-14:21 | 28 | 12-20 | Live build in your_agent/: function, tool, agent, second tool. |
+| 14:21-14:25 | 4 | 21-22 | MCP: write a tool once, plug it into any agent. |
+| 14:25-14:41 | 16 | 23-29 | When to use what: grounding, control and organisation, with a group design activity. |
+| 14:41-14:45 | 4 | 30-31 | Reliability, cost and failure, and how code keeps control. |
+| 14:45-15:00 | 15 | 32-35 | Agents that learn on the job, the 2027 direction, and what to learn next. |
 
-Total: 90 minutes, including a 3-minute stretch at 14:16 and 10 minutes of Q&A.
+Total: 90 minutes, including a 3-minute stretch at 14:18 and 8 minutes of Q&A.
 
 ## Student build (your_agent/)
 
@@ -44,11 +44,11 @@ MCP probe and agent, LangGraph open/closed routes, CrewAI scout-to-planner hando
 
 ## If running late
 
-Protect the student build (slides 16-20) and Q&A. Cut in this order: skip "Inside Ainaa" (slide 10), flash the cheat sheet (slide 26), read the saved CrewAI output instead of running it (classroom/saved_runs/crew.txt), shorten the 2027 slides.
+Protect the student build (slides 15-19) and Q&A. Cut in this order: flash the cheat sheet (slide 25), read the saved CrewAI output instead of running it (slide 27, classroom/saved_runs/crew.txt), shorten the 2027 slides (32-33). Keep your story and your advice; they are what the room remembers.
 
 ## Before class
 
 - Two terminal tabs: Tab A in your own learner folder (python tools/start_here.py demo_agent), Tab B at the repository root.
 - VS Code font 24+; switch full screen between slides and editor, never split screen.
 - Confirm the workshop Python on the lab machines ($py in the README) and how the kit ZIP reached students.
-- Optional: a printed A4 copy of the menu for slide 14.
+- Optional: a printed A4 copy of the menu for slide 13.
