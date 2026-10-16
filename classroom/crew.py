@@ -20,8 +20,19 @@ os.environ.setdefault('CREWAI_STORAGE_DIR', str(Path(__file__).with_name('.crewa
 if sys.platform == 'win32':
     os.environ['LOCALAPPDATA'] = str(Path(__file__).with_name('.crewai').resolve())
 
-from crewai import Agent, Crew, Process, Task
-from crewai.mcp import MCPServerStdio
+try:
+    from crewai import Agent, Crew, Process, Task
+    from crewai.mcp import MCPServerStdio
+except ModuleNotFoundError as exc:
+    if exc.name != 'crewai' or __name__ != '__main__':
+        raise
+    sys.exit(
+        'CrewAI is not installed in this Python:\n  ' + sys.executable + '\n'
+        'This team demo is instructor-only. Install it into a Python 3.11 to 3.13 environment with\n'
+        '  python -m pip install -r requirements-instructor.txt\n'
+        '(CrewAI 1.6.1 does not install on Python 3.14), or read the recorded output in\n'
+        '  classroom/saved_runs/crew.txt'
+    )
 from crew_live import make_live_brain
 from workshop_runtime import banner, configuration
 
