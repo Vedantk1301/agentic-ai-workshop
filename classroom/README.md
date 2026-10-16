@@ -78,7 +78,10 @@ def find_food(max_price: int, vegetarian: bool = True) -> dict:
         matches.append({'name': dish['name'], 'price': dish['price']})
     return {'status': 'ok', 'matches': matches}
 
-print(find_food(80))
+
+if __name__ == "__main__":
+    # Runs only when you run this file directly, never when my_agent.py imports it.
+    print(find_food(80))
 ```
 
 Run it:
@@ -87,9 +90,11 @@ Run it:
 & $py menu_tools.py
 ```
 
-On macOS/Linux use "$PY" menu_tools.py. Expect status ok and Veg sandwich at Rs 60. Try 30: the tool successfully returns an empty list. Remove the temporary print before importing this module from your agent. We have written ordinary Python; no model is involved yet.
+On macOS/Linux use "$PY" menu_tools.py. Expect status ok and Veg sandwich at Rs 60. Try 30: the tool successfully returns an empty list. We have written ordinary Python; no model is involved yet.
 
-**Try this (one minute each):** change the print to `find_food(80, vegetarian=False)` and the Chicken roll appears next to the Veg sandwich. (`False` means "vegetarian not required", so veg dishes still show; it does not mean non-veg only.) Try `find_food(-5)` and the input check refuses it with a clear error. Open data/menu.json, set Poha to `"available": true`, run `find_food(40)`, then change it back.
+Why `if __name__ == "__main__":`? Python sets `__name__` to `"__main__"` only for the file you run directly. So the test print runs when you run `menu_tools.py`, but stays silent when `my_agent.py` (Step 2) or `mcp_server.py` (Step 4) imports it. That matters for MCP: any stray print there would corrupt the protocol messages. Keep the block at the bottom of the file.
+
+**Try this (one minute each):** change the line inside the `if` block to `print(find_food(80, vegetarian=False))` and the Chicken roll appears next to the Veg sandwich. (`False` means "vegetarian not required", so veg dishes still show; it does not mean non-veg only.) Try `find_food(-5)` and the input check refuses it with a clear error. Open data/menu.json, set Poha to `"available": true`, run `find_food(40)`, then change it back.
 
 ## 2. Create the first agent in a new file
 
@@ -136,7 +141,7 @@ How to read the output:
 
 ## 3. Add a new ability
 
-Add this function to menu_tools.py:
+Add this function to menu_tools.py, **above** the `if __name__ == "__main__":` block (functions first, the test block stays last):
 
 ```python
 def get_canteen_hours(at: str = '12:30') -> dict:
