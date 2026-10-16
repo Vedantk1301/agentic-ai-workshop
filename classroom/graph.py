@@ -33,7 +33,7 @@ async def run(offline=False, at='12:30'):
 
         async def agent(state):
             result = await lunch_agent.ainvoke({'messages': [('user', state['question'])]}, {'recursion_limit': 10})
-            return {'answer': str(result['messages'][-1].content),
+            return {'answer': str(result['messages'][-1].text),
                     'agent_messages': result['messages'], 'path': state['path'] + ['agent']}
 
         def closed(state):

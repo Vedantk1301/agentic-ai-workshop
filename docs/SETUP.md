@@ -11,7 +11,9 @@ Open [Google AI Studio](https://aistudio.google.com/), sign in with an eligible 
 From the repository root on Windows:
 
 ```powershell
-Copy-Item classroom/.env.example classroom/.env
+if (!(Test-Path classroom/.env)) {
+    Copy-Item classroom/.env.example classroom/.env
+}
 notepad classroom/.env
 .venv\Scripts\python classroom/check_setup.py --live
 ```
@@ -21,6 +23,8 @@ Put your key only in the private .env file, never in source or a projected termi
 For the new learner project, use your_agent/.env instead. Its copied runtime reads the .env beside it. The completed reference reads classroom/.env. A successful check in one folder does not configure the other automatically.
 
 The safe --live check makes a real agent call and verifies a requested menu tool ran. It prints no key or raw provider error. After it succeeds, rehearse classroom/agent.py without --offline, then mcp_agent.py, both graph routes and crew.py if used live. Check the actual final answer as well as tool use. These calls consume your own quota.
+
+If a live call reports 503/UNAVAILABLE or high demand, the provider is temporarily unavailable. Switch to the same completed command with --offline for the labelled scripted demonstration. A 503 alone does not mean the key is invalid. The prepared CrewAI support includes a compatibility adapter for its text tool loop and Gemini's turn format; use the pinned requirements and keep that support file with the demo.
 
 ## Offline rehearsal
 

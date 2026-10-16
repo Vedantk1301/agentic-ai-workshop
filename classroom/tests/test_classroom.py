@@ -164,3 +164,34 @@ def test_live_crew_can_continue_after_a_tool_observation(ending_role):
             assert len(contents) == 2  # No extra continuation on an ordinary request.
     finally:
         brain.client.close()
+
+
+def test_console_shows_answer_text_without_provider_metadata(capsys):
+    from langchain_core.messages import AIMessage
+    from workshop_runtime import show_messages
+    show_messages({'messages': [AIMessage(content=[{
+        'type': 'text', 'text': 'Veg sandwich costs Rs 60.',
+        'extras': {'signature': 'opaque-provider-metadata'},
+    }])]})
+    output = capsys.readouterr().out
+    assert 'ANSWER: Veg sandwich costs Rs 60.' in output
+    assert 'opaque-provider-metadata' not in output
+
+
+def test_graph_answer_extracts_text_from_live_style_content(monkeypatch):
+    from offline_brain import ScriptedBrain
+    module = importlib.import_module('graph')
+
+    class ContentBlocksBrain(ScriptedBrain):
+        def _generate(self, *args, **kwargs):
+            result = super()._generate(*args, **kwargs)
+            message = result.generations[0].message
+            if not message.tool_calls:
+                message.content = [{'type': 'text', 'text': message.content,
+                                    'extras': {'signature': 'opaque-provider-metadata'}}]
+            return result
+
+    monkeypatch.setattr(module, 'make_model', lambda offline=False: ContentBlocksBrain())
+    result = asyncio.run(module.run(offline=True))
+    assert 'Veg sandwich' in result['answer']
+    assert 'opaque-provider-metadata' not in result['answer']

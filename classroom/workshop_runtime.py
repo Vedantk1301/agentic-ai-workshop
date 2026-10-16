@@ -20,7 +20,7 @@ def make_model(offline=False):
     if not key:
         raise RuntimeError('Set the private .env beside this file, or use --offline for a labelled scripted rehearsal.')
     from langchain_google_genai import ChatGoogleGenerativeAI
-    return ChatGoogleGenerativeAI(model=name, api_key=key, temperature=0, timeout=30, max_retries=0)
+    return ChatGoogleGenerativeAI(model=name, api_key=key, temperature=None, timeout=30, max_retries=0)
 
 
 def arguments(description, default='Find vegetarian lunch under Rs 80 and check opening hours.'):
@@ -53,11 +53,11 @@ def show_messages(result):
         if message.type == 'system':
             continue
         if message.type == 'human':
-            print('YOU:', message.content)
+            print('YOU:', message.text)
         elif message.type == 'tool':
-            print('RESULT', message.name + ':', message.content)
+            print('RESULT', message.name + ':', message.text)
         elif getattr(message, 'tool_calls', None):
             for call in message.tool_calls:
                 print('MODEL REQUEST:', call['name'], call['args'])
         else:
-            print('ANSWER:', message.content)
+            print('ANSWER:', message.text)
