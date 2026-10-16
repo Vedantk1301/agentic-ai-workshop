@@ -6,7 +6,7 @@ A guided VIT Mumbai workshop for beginners, 17 October 2026, 13:30-15:00 IST, La
 
 ## Install before class
 
-Install Python 3.11 and one editor. An AI coding editor is optional. Get the code one of three ways:
+Install Python 3.11 or newer (tested on 3.11 and 3.14) and one editor. An AI coding editor is optional. Get the code one of three ways:
 
 - `git clone https://github.com/Vedantk1301/agentic-ai-workshop.git`
 - On GitHub, choose **Code → Download ZIP** and extract it (no GitHub account or Git needed).
@@ -17,17 +17,17 @@ Do the install below **before class** if you can: it downloads the Python packag
 Windows PowerShell, repository root:
 
 ```powershell
-py -3.11 -m venv .venv
+py -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
 .venv\Scripts\python classroom/check_setup.py
 ```
 
-If the py launcher is unavailable, use python -m venv .venv after checking python --version is 3.11. For an existing valid workshop interpreter, use its full path rather than reinstalling Python.
+Check `py --version` first: it must say 3.11 or newer. If `py` is not found, use `python -m venv .venv` instead. The install takes about two to three minutes. You never need to "activate" the environment: the commands above call `.venv\Scripts\python` directly, which also avoids PowerShell script-permission errors.
 
 macOS/Linux:
 
 ```sh
-python3.11 -m venv .venv
+python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python classroom/check_setup.py
 ```

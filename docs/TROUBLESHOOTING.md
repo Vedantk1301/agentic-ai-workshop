@@ -2,7 +2,7 @@
 
 | Symptom | Next step |
 | --- | --- |
-| Python/py not found | Install Python 3.11, open a fresh terminal and check its version. See the root setup commands. |
+| Python/py not found | Install Python 3.11 or newer from python.org (tick "Add python.exe to PATH"), open a fresh terminal and check `py --version` or `python --version`. See the root setup commands. |
 | Cannot find classroom/agent.py | Run reference commands from the extracted repository root. Run your own my_agent.py from your_agent/. |
 | No module named langchain, mcp or menu_tools | Use the prepared .venv Python and install root requirements.txt. Create menu_tools.py in the same learner folder as my_agent.py. |
 | PowerShell activation blocked | Use .venv/Scripts/python directly; the workshop needs no execution-policy change. |

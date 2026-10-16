@@ -1,6 +1,6 @@
 # Workshop setup
 
-Install Python 3.11, one editor and requirements.txt before class using the root README commands. An AI coding editor is optional. Core students need LangChain, the Gemini integration and local MCP support; CrewAI is an optional instructor installation in requirements-instructor.txt.
+Install Python 3.11 or newer, one editor and requirements.txt before class using the root README commands. An AI coding editor is optional. Core students need LangChain, the Gemini integration and local MCP support; CrewAI is an optional instructor installation in requirements-instructor.txt.
 
 Run classroom/check_setup.py, then classroom/mcp_probe.py. The first checks the menu/configured package versions. The second discovers and calls the actual local MCP server without a model. Complete installation while internet is available.
 

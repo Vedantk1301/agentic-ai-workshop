@@ -4,7 +4,7 @@ Start here during class. You will create your own menu function and agent, then 
 
 ## 0. Prepare before class
 
-Install Python 3.11 and an editor. From the downloaded repository root, follow the root README to create .venv and install requirements.txt. An AI coding editor is optional. The core dependency file includes local MCP support; CrewAI is an optional instructor installation.
+Install Python 3.11 or newer and an editor. From the downloaded repository root, follow the root README to create .venv and install requirements.txt. An AI coding editor is optional. The core dependency file includes local MCP support; CrewAI is an optional instructor installation.
 
 Windows PowerShell, from the repository root:
 
