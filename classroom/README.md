@@ -1,21 +1,64 @@
-# Build your first canteen agent
+# Build your first AI agent
 
-Start here during class. You will create your own menu function and agent, then add a second tool. LangGraph and CrewAI are short instructor demonstrations after the build.
+A canteen helper that finds lunch within your budget, checks whether the canteen is open, and shows you every step it took. About 30 lines of your own Python.
 
-## 0. Prepare before class
+| Step | What you do | When |
+| --- | --- | --- |
+| [0. Set up](#0-set-up-once) | Create the Python environment and your folder | Once, before class |
+| [1. A tool](#1-a-tool-is-just-a-function) | Write a plain Python function | In class |
+| [2. An agent](#2-give-the-tool-to-an-ai-model) | Hand that function to an AI model | In class |
+| [3. Your turn](#3-your-turn-add-a-second-ability) | Give the agent a second ability | In class |
+| [4. MCP](#4-mcp-the-same-tools-through-a-standard-plug) | See tools shared through a standard plug | Watch |
+| [5. LangGraph and CrewAI](#5-langgraph-and-crewai) | See a workflow and a two-agent team | Watch |
+| [6. Next steps](#6-after-class) | Tidy your project and keep building | After class |
 
-Install Python 3.11 or newer and an editor. An AI coding editor is optional. The core dependency file includes local MCP support; CrewAI is an optional instructor installation.
+> **Copy, don't type.** Every code block below is a complete file or a complete change. Copy it, paste it, then read the explanation under it.
+>
+> **Two commands for everything.** Use the **Windows** one in PowerShell (VS Code's default terminal on Windows), or the **macOS / Linux** one in Terminal.
 
-**First, once:** create the `.venv` environment and install the packages. Skip this only if you already did it from the root README. Windows PowerShell, from the repository root:
+---
+
+## 0. Set up once
+
+### 0a. Create the environment
+
+Open a terminal **in the repository folder** (`agentic-ai-workshop`). Check you have Python 3.11 or newer:
+
+Windows:
+
+```powershell
+py --version
+```
+
+macOS / Linux:
+
+```sh
+python3 --version
+```
+
+Create a private environment called `.venv` and install the packages. This takes two to three minutes, so do it before class if you can.
+
+Windows:
 
 ```powershell
 py -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
 ```
 
-On macOS/Linux use `python3 -m venv .venv` and `.venv/bin/python -m pip install -r requirements.txt`. If you later see "Cannot find path ...\.venv\Scripts\python.exe", this step was skipped.
+macOS / Linux:
 
-**Then** set up your learner folder. Windows PowerShell, from the repository root:
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+> **No need to "activate" anything.** We call the environment's Python directly through a shortcut (next step), which also avoids PowerShell permission errors.
+
+### 0b. Make a `$py` shortcut and create your folder
+
+`$py` (Windows) or `$PY` (macOS / Linux) is a shortcut that always means "the Python inside `.venv`". Every command in this guide uses it.
+
+Windows:
 
 ```powershell
 $py = (Resolve-Path .venv\Scripts\python.exe).Path
@@ -24,7 +67,7 @@ $py = (Resolve-Path .venv\Scripts\python.exe).Path
 Set-Location your_agent
 ```
 
-macOS/Linux, from the repository root:
+macOS / Linux:
 
 ```sh
 PY="$(pwd)/.venv/bin/python"
@@ -33,24 +76,32 @@ PY="$(pwd)/.venv/bin/python"
 cd your_agent
 ```
 
-### What each file in your_agent/ does
+You should see a list of library versions, `Local menu and mock hours: OK`, and `Created: ...your_agent`. Your terminal is now **inside `your_agent/`**. Stay there for the whole workshop.
 
-| File | Who writes it | Job |
+> **Opened a new terminal later?** The shortcut only lives in the terminal where you made it. From inside `your_agent/`, make it again:
+>
+> Windows: `$py = (Resolve-Path ..\.venv\Scripts\python.exe).Path`
+>
+> macOS / Linux: `PY="$(cd .. && pwd)/.venv/bin/python"`
+
+### What's in `your_agent/`
+
+| File | Who writes it | Its job |
 | --- | --- | --- |
-| data/menu.json | provided | The four fictional menu records. Facts live here, not in the model. |
-| workshop_runtime.py | provided | Builds the model (scripted or live Gemini) and prints each step of a run. |
-| offline_brain.py | provided | The scripted stand-in used when OFFLINE=True. Not real AI. |
-| mcp_connection.py | provided | Starts your mcp_server.py and connects to it (Step 4). |
-| menu_tools.py | you, Step 1 | Your tools: plain Python functions. |
-| my_agent.py | you, Step 2 | Your agent: model + tools + instructions + loop. |
+| `data/menu.json` | provided | The four fictional menu items. Facts live here, not in the model. |
+| `workshop_runtime.py` | provided | Builds the model (scripted or live Gemini) and prints every step of a run. |
+| `offline_brain.py` | provided | The scripted stand-in used when `OFFLINE = True`. Not real AI. |
+| `mcp_connection.py` | provided | Starts an MCP server and connects to it (Step 4). |
+| `menu_tools.py` | **you**, Step 1 | Your tools: plain Python functions. |
+| `my_agent.py` | **you**, Step 2 | Your agent: model + tools + instructions + loop. |
 
-When the slides say `python my_agent.py`, use your workshop Python: `& $py my_agent.py` on Windows or `"$PY" my_agent.py` on macOS/Linux.
+Finished versions of every step live in `classroom/`. They're there to rescue you if you're stuck, not to copy before trying.
 
-If your learner folder was already created, skip tools/start_here.py and continue at Step 1; the script refuses to overwrite existing work. The new folder contains data/menu.json, configuration support, a local MCP connection helper and a labelled scripted model for rehearsal. It contains no completed menu function or agent. Checkpoints in classroom/ are recovery options, not files you must copy before trying.
+---
 
-## 1. Run a normal function
+## 1. A tool is just a function
 
-Create menu_tools.py in your_agent. First load the tiny fictional menu:
+Create **`menu_tools.py`** in `your_agent/` and paste this whole file:
 
 ```python
 import json
@@ -58,11 +109,8 @@ from datetime import datetime
 from pathlib import Path
 
 MENU = json.loads((Path(__file__).parent / "data" / "menu.json").read_text(encoding="utf-8"))
-```
 
-Add this function below it. Read the loop: skip unavailable or over-budget food, apply the diet rule, then return the matching records. The two input checks reject invalid types and negative budgets.
 
-```python
 def find_food(max_price: int, vegetarian: bool = True) -> dict:
     """Find available food within a per-person rupee budget. True means vegetarian only."""
     if type(max_price) is not int or max_price < 0:
@@ -84,21 +132,45 @@ if __name__ == "__main__":
     print(find_food(80))
 ```
 
-Run it:
+Run it.
+
+Windows:
 
 ```powershell
 & $py menu_tools.py
 ```
 
-On macOS/Linux use "$PY" menu_tools.py. Expect status ok and Veg sandwich at Rs 60. Try 30: the tool successfully returns an empty list. We have written ordinary Python; no model is involved yet.
+macOS / Linux:
 
-Why `if __name__ == "__main__":`? Python sets `__name__` to `"__main__"` only for the file you run directly. So the test print runs when you run `menu_tools.py`, but stays silent when `my_agent.py` (Step 2) or `mcp_server.py` (Step 4) imports it. That matters for MCP: any stray print there would corrupt the protocol messages. Keep the block at the bottom of the file.
+```sh
+"$PY" menu_tools.py
+```
 
-**Try this (one minute each):** change the line inside the `if` block to `print(find_food(80, vegetarian=False))` and the Chicken roll appears next to the Veg sandwich. (`False` means "vegetarian not required", so veg dishes still show; it does not mean non-veg only.) Try `find_food(-5)` and the input check refuses it with a clear error. Open data/menu.json, set Poha to `"available": true`, run `find_food(40)`, then change it back.
+You should see:
 
-## 2. Create the first agent in a new file
+```text
+{'status': 'ok', 'matches': [{'name': 'Veg sandwich', 'price': 60}]}
+```
 
-Create my_agent.py. Add the imports and OFFLINE setting first, then create_agent, then the invocation. Run after the complete block is in place.
+**What's happening.** No AI yet, just ordinary Python:
+
+- `MENU` loads the four dishes from `data/menu.json`.
+- The two `raise ValueError` lines refuse bad input, such as a negative budget. A tool should protect itself.
+- The two `continue` lines are the rules: skip anything sold out or over budget, and skip non-veg if you asked for veg.
+- It returns plain data, not a sentence. The model will write the sentence later.
+- `if __name__ == "__main__":` runs the test print only when you run this file directly. When `my_agent.py` imports it later, it stays silent. Keep that block at the bottom.
+
+> **Try this (one minute each)**
+>
+> - Change the print to `find_food(30)`. You get `'matches': []`. That's a correct answer ("I checked, nothing fits"), not an error.
+> - Try `find_food(80, vegetarian=False)`. The Chicken roll appears next to the sandwich, because `False` means "veg not required", not "non-veg only".
+> - Try `find_food(-5)`. The input check stops it with a clear message.
+
+---
+
+## 2. Give the tool to an AI model
+
+Create **`my_agent.py`** in `your_agent/` and paste this whole file:
 
 ```python
 from langchain.agents import create_agent
@@ -120,28 +192,62 @@ result = agent.invoke(
 show_messages(result)
 ```
 
+Run it.
+
+Windows:
+
 ```powershell
 & $py my_agent.py
 ```
 
-Expect a request to find_food, its actual returned result, and an answer mentioning the sandwich. OFFLINE=True uses a simple rule script; it is not a real AI. The LangChain agent and actual Python tool still run. If you have privately configured and checked live Gemini access, set OFFLINE=False. See docs/SETUP.md. Do not share keys.
+macOS / Linux:
 
-Point to the tool name and arguments. The model requests a call; the application executes the function and sends the result back. The model can request another action or finish. LangChain manages that loop and its messages. The optional manual_loop.py shows the same plumbing explicitly after class.
+```sh
+"$PY" my_agent.py
+```
 
-How to read the output:
+You should see:
+
+```text
+BRAIN: SCRIPTED REHEARSAL (not a real AI)
+TOOLS: local functions
+YOU: Find vegetarian lunch under Rs 80.
+MODEL REQUEST: find_food {'max_price': 80, 'vegetarian': True}
+RESULT find_food: {"status": "ok", "matches": [{"name": "Veg sandwich", "price": 60}]}
+ANSWER: Veg sandwich (Rs 60)
+```
+
+**How to read it.**
 
 | Line | Meaning |
 | --- | --- |
 | `YOU:` | Your question, sent to the model. |
-| `MODEL REQUEST:` | The model asks for a tool by name, with arguments. It does not run anything. |
-| `RESULT find_food:` | Your Python ran the function and this is the real data it returned. |
-| `ANSWER:` | The model's final reply, written from those results. |
+| `MODEL REQUEST:` | The model **asks** for a tool by name, with arguments. It runs nothing itself. |
+| `RESULT find_food:` | **Your Python** ran the function. This is the real data. |
+| `ANSWER:` | The model's reply, written from those results. |
 
-**Try this:** ask "Find non-vegetarian lunch under Rs 80." and check the arguments in MODEL REQUEST. With a live model, also try replacing find_food's docstring with something vague, such as `"""Does a thing."""`, and ask again: with a poor description, the model has a harder time knowing when to use the tool. (Deleting the docstring entirely stops the program at `tool(find_food)` with "Function must have a docstring": LangChain refuses to register a tool the model can't understand. Put it back afterwards.)
+**The model asks. Your code does.** That's the most important idea of the workshop.
 
-## 3. Add a new ability
+**What's happening.**
 
-Add this function to menu_tools.py, **above** the `if __name__ == "__main__":` block (functions first, the test block stays last):
+- `create_agent` builds the think, act, observe loop for you.
+- `tool(find_food)` wraps your function. The model sees its name, its arguments and its **docstring**, so the docstring is a prompt: it tells the model when to use the tool.
+- `system_prompt` is the agent's job description. Also a prompt.
+- `recursion_limit` is a safety stop so the loop can't run forever.
+- `OFFLINE = True` uses a **scripted brain**: LangChain and your tool run for real, but the decisions are pre-written, so it works without an API key. It is not real AI. To use live Gemini, add your own key (see `docs/SETUP.md`) and set `OFFLINE = False`.
+
+> **Try this**
+>
+> - Ask `"Find non-vegetarian lunch under Rs 80."` and look at the arguments in `MODEL REQUEST`.
+> - With a live model, run the same question with `OFFLINE = True` and then `False`. Same tool, same data, but the live model writes its own sentence.
+
+---
+
+## 3. Your turn: add a second ability
+
+Three small changes. You will **not** write any `if` statement that decides when to call the new tool. You just give the model another tool.
+
+**Change 1.** In `menu_tools.py`, paste this function **above** the `if __name__ == "__main__":` block:
 
 ```python
 def get_canteen_hours(at: str = '12:30') -> dict:
@@ -153,53 +259,62 @@ def get_canteen_hours(at: str = '12:30') -> dict:
             'open_now': opens <= now < closes, 'mock_clock': True}
 ```
 
-In my_agent.py, change the import and tool list, then ask for both facts:
+**Changes 2 and 3.** In `my_agent.py`, replace these three lines (they are in different places in the file):
 
 ```python
 from menu_tools import find_food, get_canteen_hours
 
-# Inside create_agent:
 tools=[tool(find_food), tool(get_canteen_hours)],
 
-# In the user message:
-"Find vegetarian lunch under Rs 80 and check opening hours."
+{"messages": [("user", "Find vegetarian lunch under Rs 80 and check opening hours.")]},
 ```
 
-The snippet above shows replacements in different locations, not a second complete program. Run my_agent.py again. Expect actual food and hours results; default mock time is 12:30 and closing time 16:00. A live model can choose a different call order. Explain what the second tool added.
+Run it again (same command as Step 2). You should now see **two** `MODEL REQUEST` lines and an answer like:
 
-**Try this:**
+```text
+ANSWER: Veg sandwich (Rs 60) Canteen open at mock time 12:30; closes 16:00.
+```
 
-- Change the budget to Rs 30. The correct answer is "nothing available"; check that it doesn't invent a dish.
-- With a live model, ask only "Is the canteen open?" and see which tool it chooses. A live model calls only the hours tool; the OFFLINE scripted brain checks the menu first anyway, because it follows fixed rules. That difference is exactly what "the model decides" means.
-- Ask for **non-vegetarian** lunch. The tool can only say `vegetarian=True` (veg only) or `False` (anything), so it returns both dishes and the model has to filter in its answer. That's a tool-design gap: a better tool would take `diet="veg" | "non-veg" | "any"`. Good tools make the model's job easy; try adding that as an extension.
+> **Try this**
+>
+> - Change the budget to Rs 30. The right answer is "nothing available". Check it doesn't invent a dish.
+> - With a live model, ask only `"Is the canteen open?"`. It calls **only** the hours tool. The offline script checks the menu first anyway, because it follows fixed rules. That difference is exactly what "the model decides" means.
+> - Ask for non-veg lunch. The tool only knows `vegetarian=True` (veg only) or `False` (anything), so the model has to filter in its answer. A better tool would take `diet="veg"`, `"non-veg"` or `"any"`. Good tools make the model's job easy.
 
-## 4. MCP: the same tools, plugged in a standard way
+Stuck? The finished version is `classroom/agent.py`.
 
-**In class:** just watch this part; the instructor runs it on screen. **After class, or if you finish early:** build it yourself below.
+---
 
-**What MCP is, in one paragraph.** Your `find_food` only works inside your own Python program. MCP (Model Context Protocol) is a standard "plug" for tools: you put your functions behind a small **MCP server**, and any MCP-aware app (a LangChain agent, LangGraph, CrewAI, Claude Desktop, Cursor) can discover and call them, without you rewriting them. The server has no model and makes no decisions. It only offers tools.
+## 4. MCP: the same tools through a standard plug
 
-### 4a. See it work (no new files, about one minute)
+**In class, just watch.** The instructor runs this on screen.
 
-Stay in `your_agent/`. These run the ready-made versions in `classroom/`:
+Your `find_food` only works inside your own program. **MCP** (Model Context Protocol) is a standard plug for tools, like USB-C. You put your functions behind a small **MCP server**, and any MCP-aware app (LangChain, LangGraph, CrewAI, Claude Desktop, Cursor) can discover and call them without rewriting them. The server has no model and makes no decisions; it only offers tools.
+
+To run the ready-made demos yourself, stay in `your_agent/`.
+
+Windows:
 
 ```powershell
 & $py ../classroom/mcp_probe.py
-```
-
-Expect `DISCOVERED: find_food, get_canteen_hours` and then `MCP RESULT:` with the Veg sandwich. That's a real MCP call with no AI involved: the client asked the server which tools it has, then called one.
-
-```powershell
 & $py ../classroom/mcp_agent.py --offline
 ```
 
-Expect the same answer as your own agent. **The tools didn't change; only how they're connected.**
+macOS / Linux:
 
-### 4b. Build your own server (optional)
+```sh
+"$PY" ../classroom/mcp_probe.py
+"$PY" ../classroom/mcp_agent.py --offline
+```
 
-In `your_agent/`, create **two** files. You never start the server yourself: `mcp_connection.py` (already in your folder) launches it in the background whenever a client needs it.
+The first prints `DISCOVERED: find_food, get_canteen_hours` and a real tool result, with no AI involved. The second is your agent again, with its tools arriving through MCP. **The tools didn't change; only how they're connected.**
 
-**File 1: `mcp_server.py`**, the server. It registers your existing functions, unchanged:
+<details>
+<summary><b>After class: build your own MCP server (optional)</b></summary>
+
+In `your_agent/`, create two files. You never start the server yourself; `mcp_connection.py` launches it in the background when a client needs it.
+
+**`mcp_server.py`**, the server. It registers your existing functions, unchanged:
 
 ```python
 """Local MCP server: the SAME two functions, exposed over stdio."""
@@ -214,9 +329,9 @@ if __name__ == '__main__':
     server.run(transport='stdio')
 ```
 
-Keep the file name exactly `mcp_server.py`, and never add `print` to it: the server talks to clients through standard output, and a stray print would corrupt the messages.
+Keep the name exactly `mcp_server.py`, and never add `print` to it: the server talks through standard output, and a stray print corrupts the messages.
 
-**File 2: `probe.py`**, a tiny client that starts your server, lists its tools and calls one:
+**`probe.py`**, a tiny client that starts your server, lists its tools and calls one:
 
 ```python
 import asyncio
@@ -233,35 +348,61 @@ async def main():
 asyncio.run(main())
 ```
 
-Run it:
+Run it with `& $py probe.py` (Windows) or `"$PY" probe.py` (macOS / Linux). Expect `['find_food', 'get_canteen_hours']` and the sandwich record. Lines starting with `INFO` are the server's logs; ignore them.
 
-```powershell
-& $py probe.py
-```
+To connect an agent to your server, read `classroom/mcp_agent.py`: it's your Step 2 agent, with tools from `connected_tools()` instead of `tool(find_food)`.
 
-Expect `['find_food', 'get_canteen_hours']` and then the sandwich record. Lines starting with `INFO` are the server's own logs; ignore them.
+</details>
 
-To connect an *agent* to your server, look at `classroom/mcp_agent.py`: it is your Step 2 agent, except the tools come from `connected_tools()` instead of `tool(find_food)`.
+---
 
-## 5. Watch two framework variations
+## 5. LangGraph and CrewAI
 
-**In class: the instructor runs these.** You can run them too, from `your_agent/`:
+**In class, just watch.** These show the same canteen built two other ways.
+
+### LangGraph: a workflow where code picks the route
+
+Windows:
 
 ```powershell
 & $py ../classroom/graph.py --offline
-```
-
-```powershell
 & $py ../classroom/graph.py --offline --at 17:00
 ```
 
-**LangGraph, a workflow:** the graph checks the hours first, and **code** decides the route. At 12:30 it runs the lunch agent; at 17:00 it takes the "closed" route and never calls the model. Vocabulary: *state* is the information carried along, a *node* is a step, an *edge* is which step comes next.
+macOS / Linux:
 
-**CrewAI, two agents:** the instructor also runs `classroom/crew.py --offline`. A "menu scout" agent finds options through the same MCP server and hands them to a "lunch planner" agent, which proposes 2 × Veg sandwich = Rs 120. CrewAI is an instructor-only install (`requirements-instructor.txt`) and needs Python 3.11 to 3.13. Ask yourself: did this small job really need two agents?
+```sh
+"$PY" ../classroom/graph.py --offline
+"$PY" ../classroom/graph.py --offline --at 17:00
+```
 
-## 6. Keep your project understandable
+At 12:30 you get `ROUTE: hours -> agent`; at 17:00, `ROUTE: hours -> closed`, and the model is never called. Three words explain LangGraph:
 
-Write a short README.md with the purpose and run command. Write an instruction file supported by your coding client, using a title and clear rules:
+| Word | Meaning | In our graph |
+| --- | --- | --- |
+| **State** | The information carried from step to step | the question, the hours, the answer |
+| **Node** | One step, a plain Python function | `hours`, `agent`, `closed` |
+| **Edge** | Which step comes next | `START → hours`, then a code check: open → `agent`, closed → `closed` |
+
+"Is it open?" is a fixed rule, so **code** decides it. The agent sits *inside* the graph for the part that needs judgement. Read `classroom/graph.py`; the comments mark state, nodes and edges.
+
+### CrewAI: two agents with a handoff
+
+The instructor runs `classroom/crew.py`. CrewAI is an instructor-only install (`requirements-instructor.txt`, Python 3.11 to 3.13), so students just watch.
+
+| Word | Meaning | In our crew |
+| --- | --- | --- |
+| **Agent** | A role with a goal and its own tools | "Menu scout" (uses `find_food`) and "Lunch planner" |
+| **Task** | One job given to one agent | find options; plan lunch for two within Rs 150 |
+| **Crew** | The team that runs the tasks in order | the scout's result is handed to the planner |
+
+The planner proposes 2 × Veg sandwich = Rs 120. Ask yourself: did this small job really need two agents?
+
+---
+
+## 6. After class
+
+**Keep your project understandable.** Add a short `README.md` (what it does, how to run it) and an `AGENTS.md` that coding assistants read:
 
 ```markdown
 # Canteen project rules
@@ -271,12 +412,24 @@ Write a short README.md with the purpose and run command. Write an instruction f
 - Keep API keys out of code and commits.
 ```
 
-AGENTS.md, CLAUDE.md and GEMINI.md support differs by client. Ordinary Markdown is not automatically loaded or enforced. A runtime tool allowlist, argument validation and a loop limit are code boundaries. The optional manual_loop.py demonstrates them.
+**Keep building.** Pick one:
 
-## Choose one extension afterward
+- Give the agent a `diet` argument (`veg`, `non-veg`, `any`) or a tool that returns the canteen's location.
+- Swap `data/menu.json` for your hostel mess menu or your timetable.
+- Read `classroom/manual_loop.py`: the whole agent loop in about 20 lines, with no framework hiding it.
 
-Add a tool that returns the canteen location; change the graph's closed response; or compare a one-agent group lunch proposal with the two-agent version. Change one thing, explain what should happen, run it and inspect the result. Use docs/LEARNING_PATH.md for optional depth.
+**Take-home guide:** [docs/PROMPTING_AND_PROJECT_FILES.md](../docs/PROMPTING_AND_PROJECT_FILES.md) covers writing good system prompts, tool descriptions, and README and AGENTS.md files.
 
-**Take-home:** [docs/PROMPTING_AND_PROJECT_FILES.md](../docs/PROMPTING_AND_PROJECT_FILES.md) shows how to write a better system prompt, clear tool descriptions, and README and AGENTS.md files that both people and coding agents can use.
+---
 
-If setup fails, use a checkpoint or saved_runs recording with its mode label. Record whether you ran your code, copied a checkpoint or read a saved output. These are useful recovery routes with different evidence.
+## Stuck?
+
+| You see | Do this |
+| --- | --- |
+| `Cannot find path ...\.venv\Scripts\python.exe` | Step 0a was skipped. Create the environment, then redo Step 0b. |
+| `The expression after '&' ... was not valid` | `$py` isn't set in this terminal. See "Opened a new terminal later?" in Step 0b. |
+| `can't open file ...your_agent\classroom\...` | Add `../` in front: `../classroom/name.py`. |
+| `No module named 'menu_tools'` | Run the command from inside `your_agent/`, where `menu_tools.py` lives. |
+| `No Gemini key found` | Set `OFFLINE = True` in `my_agent.py`, or add your own key (`docs/SETUP.md`). |
+| `CrewAI is not installed in this Python` | Expected for students. Watch the instructor's demo instead. |
+| Anything else | Open the finished version in `classroom/` and compare, or ask a volunteer. More fixes are in `docs/TROUBLESHOOTING.md`. |

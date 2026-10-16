@@ -24,11 +24,11 @@ Students with no agent experience leave able to:
 | 13:37-13:53 | 16 | 4-11 | What agentic AI is, the industry in 2026, and two real products. |
 | 13:53-14:21 | 28 | 12-20 | Live build in your_agent/: function, tool, agent, second tool. |
 | 14:21-14:25 | 4 | 21-22 | MCP: write a tool once, plug it into any agent. |
-| 14:25-14:41 | 16 | 23-29 | When to use what: grounding, control and organisation, with a group design activity. |
-| 14:41-14:45 | 4 | 30-31 | Reliability, cost and failure, and how code keeps control. |
-| 14:45-15:00 | 15 | 32-35 | Agents that learn on the job, the 2027 direction, and what to learn next. |
+| 14:25-14:43 | 18 | 23-31 | When to use what: grounding, control and organisation, with a group design activity. |
+| 14:43-14:47 | 4 | 32-33 | Reliability, cost and failure, and how code keeps control. |
+| 14:47-15:00 | 13 | 34-38 | Agents that learn on the job, the 2027 direction, and what to learn next. |
 
-Total: 90 minutes, including a 3-minute stretch at 14:18 and 8 minutes of Q&A.
+Total: 90 minutes, including a 3-minute stretch at 14:18 and 7 minutes of Q&A.
 
 ## Student build (your_agent/)
 
@@ -44,7 +44,7 @@ MCP probe and agent, LangGraph open/closed routes, CrewAI scout-to-planner hando
 
 ## If running late
 
-Protect the student build (slides 15-19) and Q&A. Cut in this order: flash the cheat sheet (slide 25), read the saved CrewAI output instead of running it (slide 27, classroom/saved_runs/crew.txt), shorten the 2027 slides (32-33). Keep your story and your advice; they are what the room remembers.
+Protect the student build (slides 15-19) and Q&A. Cut in this order: flash the cheat sheet (slide 25), read the saved CrewAI output instead of running it (slide 29, classroom/saved_runs/crew.txt), shorten the 2027 slides (34-35). Keep your story and your advice; they are what the room remembers.
 
 ## Before class
 

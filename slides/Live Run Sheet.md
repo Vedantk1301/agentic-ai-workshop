@@ -34,15 +34,18 @@ Generated from the deck's speaker notes. If the deck changes, regenerate this fi
 | 23 | 14:25 | 1 | Slides | When to use what. |  |
 | 24 | 14:26 | 3 | Slides | Give the model only the control it needs. |  |
 | 25 | 14:29 | 1 | Slides | Every pattern has a weakness. |  |
-| 26 | 14:30 | 3 | Terminal demo (your_agent) | What if the canteen is closed? | `python ../classroom/graph.py --offline` |
-| 27 | 14:33 | 2 | Terminal demo (your_agent) | A scout hands off to a planner. | `python ../classroom/crew.py --offline` |
-| 28 | 14:35 | 4 | Slides | Pick one. Choose the design. Name one way it fails. |  |
-| 29 | 14:39 | 2 | Slides | The reason matters more than the label. |  |
-| 30 | 14:41 | 2 | Slides | What agents still get wrong. |  |
-| 31 | 14:43 | 2 | Terminal demo (your_agent) | Prompts guide. Code enforces. | `python ../classroom/safety_demo.py` |
-| 32 | 14:45 | 2 | Slides | Agents that learn on the job. |  |
-| 33 | 14:47 | 2 | Slides | Where this is heading. |  |
-| 34 | 14:49 | 3 | Slides | What I’d do in your place. |  |
-| 35 | 14:52 | 8 | Slides | Your agent is 30 lines long. What will you give it next? |  |
+| 26 | 14:30 | 2 | Slides | State, nodes, edges. |  |
+| 27 | 14:32 | 2 | Terminal demo (your_agent) | What if the canteen is closed? | `python ../classroom/graph.py --offline` |
+| 28 | 14:34 | 1 | Slides | Agents, tasks, a crew. |  |
+| 29 | 14:35 | 2 | Terminal demo (your_agent) | A scout hands off to a planner. | `python ../classroom/crew.py --offline` |
+| 30 | 14:37 | 4 | Slides | Pick one. Choose the design. Name one way it fails. |  |
+| 31 | 14:41 | 2 | Slides | The reason matters more than the label. |  |
+| 32 | 14:43 | 2 | Slides | What agents still get wrong. |  |
+| 33 | 14:45 | 2 | Terminal demo (your_agent) | Prompts guide. Code enforces. | `python ../classroom/safety_demo.py` |
+| 34 | 14:47 | 2 | Slides | Agents that learn on the job. |  |
+| 35 | 14:49 | 1 | Slides | Where this is heading. |  |
+| 36 | 14:50 | 3 | Slides | What I’d do in your place. |  |
+| 37 | 14:53 | 7 | Slides | Your agent is 30 lines long. What will you give it next? |  |
+| 38 | 15:00 | 0 | Slides | Thank you. |  |
 
 Everything runs in ONE terminal inside your learner folder (your_agent/ or demo_agent/). Demo commands reach the ready-made scripts with ../classroom/. Use the .venv-build-first Python for the CrewAI demo.
