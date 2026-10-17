@@ -1,79 +1,59 @@
 # Build your first AI agent
 
-A guided VIT Mumbai workshop for beginners, 17 October 2026, 13:30-15:00 IST, Lab 05. Build a small canteen agent, add a tool, reuse the tools through MCP, then compare LangChain, LangGraph and CrewAI.
+A hands-on workshop for beginners at VIT Mumbai, 17 October 2026, 13:30-15:00 IST, Lab 05. You build a small canteen helper agent in about 30 lines of Python, give it a second tool, then see the same tools through MCP, LangGraph and CrewAI.
 
-**Start with classroom/README.md.** Students write their application in a fresh folder; completed classroom files are checkpoints and instructor examples. The older starter/ and deep-dives/ material is optional advanced reference.
+> ## 👉 Start here: [classroom/README.md](classroom/README.md)
+>
+> That page is the whole lesson: setup, then every step with copy-paste code, expected output and commands for **Windows** and **macOS / Linux**.
 
-## Install before class
+## Before class (10 minutes)
 
-Install Python 3.11 or newer (tested on 3.11 and 3.14) and one editor. An AI coding editor is optional. Get the code one of three ways:
+**1. Install Python 3.11 or newer** from [python.org](https://www.python.org/downloads/), plus an editor such as VS Code.
 
-- `git clone https://github.com/Vedantk1301/agentic-ai-workshop.git`
-- On GitHub, choose **Code → Download ZIP** and extract it (no GitHub account or Git needed).
-- Use the same ZIP shared by the organisers.
+**2. Get the code.** Either:
 
-Do the install below **before class** if you can: it downloads the Python packages, which is slow when the whole lab does it at once.
+- `git clone https://github.com/Vedantk1301/agentic-ai-workshop`
+- or the green **Code** button on this page → **Download ZIP**, then extract it (no GitHub account or Git needed).
 
-Windows PowerShell, repository root:
+**3. Do Step 0 of [classroom/README.md](classroom/README.md).** It installs the packages, which is slow when the whole lab does it at once on the same Wi-Fi.
 
-```powershell
-py -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python classroom/check_setup.py
-```
+No API key is needed. Everything runs in offline mode, and a free Gemini key is optional ([docs/SETUP.md](docs/SETUP.md)).
 
-Check `py --version` first: it must say 3.11 or newer. If `py` is not found, use `python -m venv .venv` instead. The install takes about two to three minutes. You never need to "activate" the environment: the commands above call `.venv\Scripts\python` directly, which also avoids PowerShell script-permission errors.
+## What's in here
 
-macOS/Linux:
+| Folder | What it is |
+| --- | --- |
+| [classroom/](classroom/README.md) | **The lesson**, plus finished versions of every step in case you get stuck |
+| [docs/](docs/) | Setup help, [troubleshooting](docs/TROUBLESHOOTING.md) and the take-home [prompting and project files guide](docs/PROMPTING_AND_PROJECT_FILES.md) |
+| [slides/](slides/) | The curriculum, speaker script and run sheet |
+| starter/, solutions/, deep-dives/ | Optional advanced material from an earlier edition |
 
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python classroom/check_setup.py
-```
+<details>
+<summary><b>For the instructor</b></summary>
 
-Follow [the new-file lesson](classroom/README.md). start_here.py creates your_agent/ with data and setup/fallback support, without a finished agent. It refuses to overwrite a nonempty folder.
+CrewAI needs Python 3.11 to 3.13, so it is an instructor-only install. Students watch that demo.
 
-## Run the checkpoints
-
-Windows, repository root:
-
-```powershell
-.venv\Scripts\python classroom/menu_tools.py
-.venv\Scripts\python classroom/agent.py --offline
-.venv\Scripts\python classroom/mcp_probe.py
-.venv\Scripts\python classroom/mcp_agent.py --offline
-.venv\Scripts\python classroom/graph.py --offline --at 17:00
-```
-
-Use .venv/bin/python on macOS/Linux. --offline means a labelled rule script supplies model decisions while real framework/tool code runs. MCP probe has no model at all. Remove --offline only after privately configuring and testing live Gemini; see [setup](docs/SETUP.md). Free-tier access and quota vary.
-
-The presenter installs requirements-instructor.txt for the real CrewAI example:
+Windows:
 
 ```powershell
 .venv\Scripts\python -m pip install -r requirements-instructor.txt
 .venv\Scripts\python classroom/crew.py --offline
 ```
 
-CrewAI is optional for students and has a heavier dependency set. The demo is an actual sequential crew; its offline model is scripted. A sequential handoff is different from a manager selecting workers and does not implement A2A automatically.
+macOS / Linux:
 
-## Where to go
+```sh
+.venv/bin/python -m pip install -r requirements-instructor.txt
+.venv/bin/python classroom/crew.py --offline
+```
 
-| Material | Purpose |
-| --- | --- |
-| [Classroom lesson](classroom/README.md) | Write a tool, build one agent, add hours and call MCP |
-| [Speaker script](slides/Speaker%20Script.md) and [run sheet](slides/Live%20Run%20Sheet.md) | Per-slide timing, screen switches and commands |
-| [Curriculum](slides/Curriculum.md) | The 90-minute timetable (13:30-15:00) and scope |
-| [Setup](docs/SETUP.md), [room guide](docs/ROOM_GUIDE.md) | Installation, access and large-room support |
-| [Learning path](docs/LEARNING_PATH.md) | Manual loop, patterns, project habits and advanced material |
-| [Prompting and project files](docs/PROMPTING_AND_PROJECT_FILES.md) | Take-home: system prompts, tool descriptions, README and AGENTS.md best practices |
-| classroom/saved_runs/ | Actual captured offline runs, labelled with their mode |
-
-## Verify the kit
+Verify the kit (Windows; use `.venv/bin/python` on macOS / Linux):
 
 ```powershell
 .venv\Scripts\python tools/verify_workshop.py
 .venv\Scripts\python -m pytest classroom/tests deep-dives/demo/tests -q -p no:cacheprovider
 ```
 
-The full classroom suite includes CrewAI; install instructor requirements first. Use -k "not crew" for the core suite. Local tools and MCP work without keys. Offline checks do not establish live model availability or quota. The records and clock are fictional; no orders or payments occur.
+The full suite includes CrewAI; add `-k "not crew"` for the core suite. `--offline` means a labelled scripted model makes the decisions while the real framework and tool code runs. Offline checks don't prove the live model works or has quota. The menu and clock are fictional; no orders or payments happen.
+
+</details>
